@@ -32,11 +32,11 @@ Users.init(
     },
     isAdmin: {
       type: S.STRING,
-      allowNull: false,
+      defaultValue: false,
     },
     superAdmin: {
       type: S.STRING,
-      allowNull: false,
+      defaultValue: false,
     },
     salt: {
       type: S.STRING,
@@ -53,9 +53,9 @@ Users.addHook('beforeCreate', (user) => {
     .genSalt(16)
     .then((salt) => {
       user.salt = salt;
-      return user.setHash(user.contraseña, user.salt);
+      return user.setHash(user.password, user.salt);
     })
-    .then((hashedPassword) => (user.contraseña = hashedPassword));
+    .then((hashedPassword) => (user.password = hashedPassword));
 });
 
 Users.prototype.setHash = function (password, salt) {
