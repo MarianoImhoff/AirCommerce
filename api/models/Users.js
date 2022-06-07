@@ -53,9 +53,9 @@ Users.addHook('beforeCreate', (user) => {
     .genSalt(16)
     .then((salt) => {
       user.salt = salt;
-      return user.setHash(user.password, user.salt);
+      return user.setHash(user.contraseña, user.salt);
     })
-    .then((hashedPassword) => (user.password = hashedPassword));
+    .then((hashedPassword) => (user.contraseña = hashedPassword));
 });
 
 Users.prototype.setHash = function (password, salt) {
