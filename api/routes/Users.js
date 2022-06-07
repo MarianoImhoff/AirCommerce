@@ -3,6 +3,7 @@ const router = express.Router();
 const { Users, Products, Orders } = require('../models');
 const passport = require('passport');
 
+
 // Se crea el usuario y se verifica que no tiene ningun otro igual
 
 router.post('/register', async (req, res, next) => {
@@ -64,3 +65,4 @@ router.get('/me', (req, res) => {
 });
 
 module.exports = router;
+
