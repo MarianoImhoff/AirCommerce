@@ -32,11 +32,11 @@ Users.init(
     },
     isAdmin: {
       type: S.STRING,
-      allowNull: false,
+      defaultValue: false,
     },
     superAdmin: {
       type: S.STRING,
-      allowNull: false,
+      defaultValue: false,
     },
     salt: {
       type: S.STRING,

@@ -35,7 +35,7 @@ passport.use(
           if (!user) {
             return done(null, false);
           }
-          user.hash(password, user.salt).then((hash) => {
+          user.setHash(password, user.salt).then((hash) => {
             if (hash != user.password) {
               return done(null, false);
             }
