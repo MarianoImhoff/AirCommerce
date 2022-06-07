@@ -2,12 +2,9 @@ const S = require("sequelize")
 const bcrypt= require("bcrypt")
 const db= require("../db/index")
 
-class User extends S.Model{
-    setHash(password, salt){
-        return bcrypt.hash(password, salt)
-    }
-}
-User.init({
+class Users extends S.Model{}
+
+Users.init({
     name:{
         type:S.STRING,
         allowNull: false,
@@ -52,7 +49,7 @@ User.init({
 
 })
 
-User.addHook('beforeCreate',(user)=>{
+Users.addHook('beforeCreate',(user)=>{
     return bcrypt.genSalt(16)
     .then(salt => {
         user.salt = salt
@@ -61,5 +58,9 @@ User.addHook('beforeCreate',(user)=>{
     .then(hashedPassword => user.contraseña = hashedPassword)
 })
 
+Users.prototype.setHash=function(password, salt){
+    return bcrypt.hash(password, salt)
+}
 
-module.exports = User
+
+module.exports = Users
