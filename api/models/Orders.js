@@ -16,5 +16,8 @@ productId:{
 
 }
 
+},{
+sequelize: db,
+modelName: "orders"
 })
 module.exports = Orders
