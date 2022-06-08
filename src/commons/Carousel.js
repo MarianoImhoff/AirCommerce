@@ -1,3 +1,4 @@
+import React from "react"
 import reviews from "../utils/reviews.json";
 import ReviewCard from "../components/ReviewCard";
 import "../styles/Carousel.scss";

@@ -1,3 +1,4 @@
+import React from "react"
 import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import s from '../styles/ProductCard.module.css';

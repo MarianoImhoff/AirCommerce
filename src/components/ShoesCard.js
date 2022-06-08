@@ -1,11 +1,13 @@
+import React from "react"
 import {Link} from "react-router-dom";
 import s from "../styles/ShoesCard.module.css";
 
 const ShoesCard = ({shoe}) => {
+
     return (
-        <li className={s.shoesCard} key={shoe.id}>
-            <Link to={`/product_view/:${shoe.id}` }>
-                <img className={s.shoesImage} src={require(`../utils/img${shoe.url_path}`)} alt="1"></img>
+        <li key={shoe.id} className={s.shoesCard}>
+            <Link to={`/${shoe.id}` }>
+                <img className={s.shoesImage} src={require(`../utils/img${shoe.url_path}`)} alt={shoe.model}></img>
             </Link>
             <div>{shoe.brand}</div>
             <div>{shoe.model}</div>
@@ -14,6 +16,5 @@ const ShoesCard = ({shoe}) => {
         </li>
     )
 }
-
 
 export default ShoesCard;

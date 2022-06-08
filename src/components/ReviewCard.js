@@ -1,3 +1,4 @@
+import React from "react"
 import "../styles/Carousel.scss";
 
 const ReviewCard = ({review}) => {
