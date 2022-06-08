@@ -1,7 +1,6 @@
 const express = require("express");
 const {Op} = require("sequelize")
 const router = express.Router()
-const passport = require("passport")
 const {Users, Products, Orders, Reviews} = require("../models")
 
 /* router.get("/",(req,res)=>{
@@ -24,10 +23,18 @@ router.get("/",async (req,res)=>{
     .catch(error => console.log(error))
 }); */
 
-router.get("/:id",async(req,res)=>{
+router.get("/:name",async(req,res)=>{
     try{
-        const id = req.params.id
-        const product = await Products.findOne({where:{id}})
+        const name = req.params.name
+        const product = await Products.findAll({where:{name}})
+        res.status(200).send(product)
+    }catch(error){res.status(400).send(error)}
+})
+
+router.get("/:name",async(req,res)=>{
+    try{
+        const name = req.params.name
+        const product = await Products.findOne({where:{name}})
         res.status(200).send(product)
     }catch(error){res.status(400).send(error)}
 })
@@ -45,8 +52,6 @@ router.post("/",async(req,res)=>{
         res.status(201).send(product)
     }catch(error){res.status(400).send(error)}
 })
-
-
 
 
 router.put("/:id", async(req,res)=>{
