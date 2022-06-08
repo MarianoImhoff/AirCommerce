@@ -1,8 +1,7 @@
 const express = require("express");
 const {Op} = require("sequelize")
 const router = express.Router()
-const passport = require("passport")
-const {Users, Products, Orders} = require("../models")
+const {Users, Products, Orders, Reviews} = require("../models")
 
 /* router.get("/",(req,res)=>{
     Products.findAll()
@@ -24,11 +23,19 @@ router.get("/",async (req,res)=>{
     .catch(error => console.log(error))
 }); */
 
-router.get("/:id",async(req,res)=>{
+router.get("/:name",async(req,res)=>{
     try{
-        const {id} = req.params
-        const products = Products.findOne({where:{id}})
-        res.status(200).send(products)
+        const name = req.params.name
+        const product = await Products.findAll({where:{name}})
+        res.status(200).send(product)
+    }catch(error){res.status(400).send(error)}
+})
+
+router.get("/:name",async(req,res)=>{
+    try{
+        const name = req.params.name
+        const product = await Products.findOne({where:{name}})
+        res.status(200).send(product)
     }catch(error){res.status(400).send(error)}
 })
 
@@ -46,33 +53,6 @@ router.post("/",async(req,res)=>{
     }catch(error){res.status(400).send(error)}
 })
 
-/*  router.put("/add",(req,res)=>{
-    const {productId, userId} = req.body
-    Products.findOne({where:{productId}})
-    .then(products =>{
-        Products.create(req.body)
-        .then(newProduct=>{
-            Users.findByPk(userId)
-            .then(user => newProduct.addUser(user))
-            .then(()=> res.sendStatus(200))
-            .catch(error => console.log(error))
-        })
-    })
-});  */
-
-router.put("/add",async(req,res)=>{
-    try{
-        const {productId, userId} = req.body
-        const product = await Products.findOne({where:{productId}})
-        const newProduct = await Products.create(req.body)
-        const user = await Users.findByPk(userId)
-        newProduct.addUsers(user)
-        res.sendStatus(200)
-
-    }catch(error){res.status(400).send(error)} 
-
-});
-
 
 router.put("/:id", async(req,res)=>{
     try{
@@ -83,20 +63,5 @@ router.put("/:id", async(req,res)=>{
     }catch(error){res.status(400).send(error)}
 })
 
-/* router.delete("/remove",(req,res)=>{
-    const {productId, userId}= req.body
-    Products.destroy({where:{productId}})
-    .then(()=>res.sendStatus(200))
-    .catch(error => console.log(error))
-}) */
-
-router.delete("/remove",async(req,res)=>{
-    try{
-        
-        const {barcode}= req.body
-        await Products.destroy({where:{barcode}})
-        res.sendStatus(200) 
-    }catch(error){res.status(400).send(error)}
-})
 
 module.exports= router

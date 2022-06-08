@@ -6,7 +6,7 @@ class Products extends S.Model {}
 Products.init(
   {
     barcode: {
-      type: S.INTEGER,
+      type: S.BIGINT,
       allowNull: false,
     },
     brand: {
@@ -26,7 +26,7 @@ Products.init(
       type: S.DECIMAL,
       allowNull: false,
     },
-    photo: {
+    url_path: {
       type: S.TEXT,
       allowNull: false,
     },
@@ -37,9 +37,6 @@ Products.init(
     stock: {
       type: S.INTEGER,
       allowNull: false,
-    },
-    rating: {
-      type: S.INTEGER,
     },
   },
   { sequelize: db, modelName: 'products' }

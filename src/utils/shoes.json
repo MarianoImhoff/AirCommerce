@@ -8,7 +8,6 @@
       "price": 144.97,
       "size": 7,
       "stock": 10,
-      "rating": 0,
       "url_path": "/01.jpg"
     },
     {
@@ -20,7 +19,6 @@
       "price": 85,
       "size": 8,
       "stock": 9,
-      "rating": 0,
       "url_path": "/02.jpg"
     },
     {
@@ -32,7 +30,6 @@
       "price": 64.97,
       "size": 6,
       "stock": 11,
-      "rating": 0,
       "url_path": "/03.jpg"
     },
     {
@@ -44,7 +41,6 @@
       "price": 100,
       "size": 8,
       "stock": 23,
-      "rating": 0,
       "url_path": "/04.jpg"
     },
     {
@@ -56,7 +52,6 @@
       "price": 190,
       "size": 10,
       "stock": 21,
-      "rating": 0,
       "url_path": "/05.jpg"
     },
     {
@@ -68,7 +63,6 @@
       "price": 46,
       "size": 5,
       "stock": 13,
-      "rating": 0,
       "url_path": "/06.jpg"
     },
     {
@@ -80,7 +74,6 @@
       "price": 70,
       "size": 6,
       "stock": 15,
-      "rating": 0,
       "url_path": "/07.jpg"
     },
     {
@@ -92,7 +85,6 @@
       "price": 150,
       "size": 7,
       "stock": 0,
-      "rating": 0,
       "url_path": "/08.jpg"
     },
     {
@@ -104,7 +96,6 @@
       "price": 150,
       "size": 12,
       "stock": 31,
-      "rating": 0,
       "url_path": "/09.jpg"
     },
     {
@@ -116,7 +107,6 @@
       "price": 130,
       "size": 14,
       "stock": 3,
-      "rating": 0,
       "url_path": "/10.jpg"
     },
     {
@@ -128,7 +118,6 @@
       "price": 170,
       "size": 13,
       "stock": 5,
-      "rating": 0,
       "url_path": "/11.jpg"
     },   
     {
@@ -140,7 +129,6 @@
       "price": 120,
       "size": 6,
       "stock": 7,
-      "rating": 0,
       "url_path": "/12.jpg"
     },  
     {
@@ -152,7 +140,6 @@
       "price": 190,
       "size": 8,
       "stock": 0,
-      "rating": 0,
       "url_path": "/13.jpg"
     }    
 ]

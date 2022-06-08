@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import shoes from '../utils/shoes.json';
 import ProductCard from '../commons/ProductCard';
 import s from '../styles/Cart.module.css';
+
 
 //// CARRITO FAKE CON ALGUNOS PRODUCTOS Y CANTIDAD
 const selectedShoes = [shoes[0], shoes[3], shoes[5]];
@@ -47,6 +49,7 @@ const Cart = () => {
   }, [cartList]);
 
   return (
+
     <div className={s.cart}>
       <div className={s.cartItems}>
         {cartList.map((shoe) => (
@@ -74,6 +77,7 @@ const Cart = () => {
         <Link to={logged ? '/checkout' : "/login" }>
           <button>Checkout</button>
         </Link>
+
       </div>
     </div>
   );
