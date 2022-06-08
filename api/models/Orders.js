@@ -4,20 +4,25 @@ const db = require("../db")
 class Orders extends S.Model{}
 
 Orders.init({
-    //ver si es asi o con un hook
+    
 orderNumber:{
     type: S.INTEGER
 },
-userId:{
-    type: S.INTEGER
+userNumber:{
+    type:S.INTEGER
 },
-productId:{
-    type: S.INTEGER
-
-}
+productNumber:{
+    type:S.INTEGER
+},
 
 },{
 sequelize: db,
 modelName: "orders"
+})
+
+//hook provisorio, hasta obtener datos del front
+Orders.addHook("beforeValidate",(orders)=>{
+    return (orders.orderNumber = Math.floor(Math.random()*10000));
+    
 })
 module.exports = Orders

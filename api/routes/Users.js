@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Users, Products, Orders } = require('../models');
+const {Users, Products, Orders, Reviews} = require("../models")
 const passport = require('passport');
 
 
