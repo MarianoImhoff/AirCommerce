@@ -1,21 +1,37 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import s from '../styles/ProductCard.module.css';
 
-const ProductCard = ({ imgPath, brand, model, size, price }) => {
+const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
+  const handleChange = (event) => {
+    handleQuantity(shoe.id, event.target.value);
+  };
+
+  const handleClick = () => {
+    handleRemoveItem(shoe.id);
+  };
+
   return (
-    <div className="product-card">
-      <div className="photo">
-        <img src={imgPath} alt="" />
+    <div className={s.productCard} key={shoe.id}>
+      <div className={s.imageContainer}>
+        <Link to={`/product_view/${shoe.id}`}>
+          <img
+            className={s.image}
+            src={require(`../utils/img${shoe.url_path}`)}
+            alt={shoe.model}
+          />
+        </Link>
       </div>
-      <div className="details">
-        <ul>
-          <li>Marca: {brand}</li>
-          <li>Modelo: {model}</li>
-          <li>Talle: {size}</li>
-          <li>Precio: ARS {price}</li>
-        </ul>
+      <div className={s.details}>
+          <ul>
+            <li>Marca: {shoe.brand}</li>
+            <li>Modelo: {shoe.model}</li>
+            <li>Talle: {shoe.size}</li>
+            <li>Precio: USD {Math.round(shoe.price)}</li>
+          </ul>
         <div>
-          <label>Cantidad: </label>
-          <select name="quantity">
+          <label>Cantidad:&nbsp;</label>
+          <select name={s.quantity} onChange={handleChange}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -23,8 +39,10 @@ const ProductCard = ({ imgPath, brand, model, size, price }) => {
             <option value="5">5</option>
           </select>
         </div>
-        <div className="trash">
-          <p>Eliminar producto del carrito  <FaTrashAlt /></p>
+        <div className={s.trash}>
+          <p>
+            Eliminar producto del carrito <FaTrashAlt onClick={handleClick} />
+          </p>
         </div>
       </div>
     </div>
