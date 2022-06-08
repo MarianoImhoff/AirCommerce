@@ -4,7 +4,6 @@ const { Users, Products, Orders, Reviews } = require('../models');
 const passport = require('passport');
 const { Auth } = require('../../api/controllers/middleware/auth');
 
-
 // Se crea el usuario y se verifica que no tiene ningun otro igual
 
 router.post('/register', async (req, res, next) => {
@@ -77,7 +76,7 @@ router.post('logout', (req, res) => {
 //(Terminar de pensar con El equipo debido que fue una idea autonoma , pero creo que funciona jaja)
 //(Tambien Hablar acerca de los modelos, en la parte de Orders, personalmente siento que faltan 2 partes una en la cual muestra todos los productos que contiene la orden , y otra el precio total de la misma.)
 
-/* router.get('/orders', Auth, async (req, res) => {
+router.get('/orders', Auth, async (req, res) => {
   try {
     const orders = await Orders.findAll({
       where: {
@@ -88,7 +87,7 @@ router.post('logout', (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
-}); */
+});
 
 /* router.get('/orders/:id', Auth, async (req, res) => {
 try{
