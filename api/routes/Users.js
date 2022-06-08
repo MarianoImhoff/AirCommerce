@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {Users, Products, Orders, Reviews} = require("../models")
+const { Users, Products, Orders, Reviews } = require('../models');
 const passport = require('passport');
-
+const { Auth } = require('../../api/controllers/middleware/auth');
+const Orders = require('../models/Orders');
 
 // Se crea el usuario y se verifica que no tiene ningun otro igual
 
@@ -58,11 +59,46 @@ router.put('/edit', async (req, res) => {
   }
 });
 
-//Mostrar al usuario Logeado
+//Mostrar al usuario Logeado ( Actualizar con LocalStorage )
 
 router.get('/me', (req, res) => {
   res.send(req.user);
 });
 
-module.exports = router;
+//Logout
 
+router.post('logout', (req, res) => {
+  req.logOut();
+  res.sendStatus(200);
+});
+
+//Obtener todas las ordenes de compra del Usuario
+
+//(Terminar de pensar con El equipo debido que fue una idea autonoma , pero creo que funciona jaja)
+//(Tambien Hablar acerca de los modelos, en la parte de Orders, personalmente siento que faltan 2 partes una en la cual muestra todos los productos que contiene la orden , y otra el precio total de la misma.)
+
+router.get('/orders', Auth, async (req, res) => {
+  try {
+    const orders = await Orders.findAll({
+      where: {
+        userId: req.user.id,
+      },
+    });
+    res.send(orders);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+/* router.get('/orders/:id', Auth, async (req, res) => {
+try{
+const orders= await Orders.findAll({
+  where:{
+    userNumber:req.params.id
+  }
+})
+const products= await Products
+}
+}); */
+
+module.exports = router;

@@ -38,7 +38,6 @@ Products.init(
       type: S.INTEGER,
       allowNull: false,
     },
-    
   },
   { sequelize: db, modelName: 'products' }
 );
