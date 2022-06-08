@@ -1,0 +1,51 @@
+.productContainer {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    max-height: 1400px;
+    max-width: 1400px;
+}
+
+.column {
+    max-width: 400px;
+    height: auto;
+    margin: 15px;
+    text-align: justify;
+    height: 100%;
+}
+
+.productImg {
+    padding-top: auto;
+    margin-right: 2.5%;
+    height: 30%;
+    width: 30%;
+    flex-direction: column;
+}
+
+.productDetails {
+    border-style: solid ;
+    border-width: 1px;
+    margin-left: 2.5%;
+    padding-left: 2%;
+    height: auto;
+    width: 30%;
+    flex-direction: column;
+}
+
+.productTitle {
+    padding-top: 15%;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.productButton {
+    border: none;
+    border-radius: 5%;
+    background-color: dodgerblue;
+    color: white;
+    height: 10%;
+    width: 40%;
+}

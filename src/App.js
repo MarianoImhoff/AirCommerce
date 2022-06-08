@@ -38,7 +38,7 @@ export default function App() {
                 <Route path='/history' element={<History />} /> */}
                 <Route exact path="/cart" element={<Cart />} />
                 {/* <Route exact path="/checkout" element={<Checkout />} /> */}
-                <Route exact path="/product_view/:id" element={<ProductView />} />
+                <Route exact path="/:id" element={<ProductView />} />
                 {/* <Route exact path="/new_product" element={<NewProduct />} />
                 <Route path='/update_product/:id' element={<NewProduct />} /> */}
             </Routes>
