@@ -1,0 +1,269 @@
+[
+    {
+      "id": 1,
+      "review": "Awesome product",
+      "rating": 4,
+      "userId": 1,
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "review": "These are literally the most uncomfortable shoes I have ever worn. Feel like the circulation to my toes is cut off when walking bc they’re so stiff.",
+      "rating": 1,
+      "userId": 2,
+      "productId": 1
+    },
+    {
+      "id": 3,
+      "review": "Cute but way too small.",
+      "rating": 5,
+      "userId": 3,
+      "productId": 1
+    },
+    {
+      "id": 4,
+      "review": "I love the fact that it came as expected, no complaints.",
+      "rating": 5,
+      "userId": 4,
+      "productId": 1
+    },
+    {
+      "id": 5,
+      "review": "Bought these for cross-fit classes and I'm in love with them! Perfect!.",
+      "rating": 4,
+      "userId": 5,
+      "productId": 1
+    },
+    {
+      "id": 6,
+      "review": "Fit, comfy and suitable for cardio and weight lifting training also looking great",
+      "rating": 4,
+      "userId": 1,
+      "productId": 2
+    },
+    {
+      "id": 7,
+      "review": "I love this design and really wanted to keep it but unfortunately it didn't really fit me personally. I was slipping out and as I walked I was feeling pressure on the top of my feet. Maybe it's just the shape of my feet but otherwise really great shoes.",
+      "rating": 4,
+      "userId": 3,
+      "productId": 2
+    },
+    {
+      "id": 8,
+      "review": "Got them as a gift for my wife on Valentine’s Day. She’s in love with them.",
+      "rating": 5,
+      "userId": 2,
+      "productId": 2
+    },
+    {
+      "id": 9,
+      "review": "Over priced. Looked like it was stored under a box of other shoes for a year. Box looked like it was under a stack of other shoes for a year. Do to this leather was creased and folded up and had some blinishes.",
+      "rating": 2,
+      "userId": 5,
+      "productId": 2
+    },
+    {
+      "id": 10,
+      "review": "I bought it for my grandson and he loves it.",
+      "rating": 4,
+      "userId": 4,
+      "productId": 2
+    },
+    {
+      "id": 11,
+      "review": "Was afraid because at first it seemed not cushion enough but as it turns out it is perfect of lifting weights and keeping balance while doing lunges and such. And they are cute.",
+      "rating": 5,
+      "userId": 1,
+      "productId": 3
+    },
+    {
+      "id": 12,
+      "review": "Nice leather, comfortable and good fit. Would buy again.",
+      "rating": 5,
+      "userId": 5,
+      "productId": 3
+    },
+    {
+      "id": 13,
+      "review": "Shoes came on time and they fit like a glove no problem what so ever happy that they came just in time for my birthday I have zero compliments.",
+      "rating": 4,
+      "userId": 3,
+      "productId": 3
+    },
+    {
+      "id": 14,
+      "review": "I bought these for my son and he loves them. They're easy to clean and he wears them on his 'nice outings.",
+      "rating": 5,
+      "userId": 2,
+      "productId": 3
+    },
+    {
+      "id": 15,
+      "review": "It is to high on the back of the ankle so hurts.. and also mod foot or is way to tight",
+      "rating": 2,
+      "userId": 6,
+      "productId": 3
+    },
+    {
+      "id": 16,
+      "review": "Been looking everywhere for these for my boyfriend and finally found them! He absolutely loves them and have been wearing them everyday!",
+      "rating": 5,
+      "userId": 6,
+      "productId": 4
+    },
+    {
+      "id": 17,
+      "review": "What can I say. Love them. Just look at them. I thought they would go for way more from what they cost",
+      "rating": 4,
+      "userId": 1,
+      "productId": 4
+    },
+    {
+      "id": 18,
+      "review": "Great comfort, great quality, and great shoe all round . Fit as expected.",
+      "rating": 4,
+      "userId": 2,
+      "productId": 4
+    },
+    {
+      "id": 19,
+      "review": "These shoes are similar to other shoes but newer.",
+      "rating": 3,
+      "userId": 5,
+      "productId": 4
+    },
+    {
+      "id": 20,
+      "review": "Great looking, true to size",
+      "rating": 4,
+      "userId": 3,
+      "productId": 4
+    },
+    {
+      "id": 21,
+      "review": "Great sneakers, could not find ANYWHERE, only here",
+      "rating": 5,
+      "userId": 7,
+      "productId": 5
+    },
+    {
+      "id": 22,
+      "review": "Excellent quality",
+      "rating": 4,
+      "userId": 6,
+      "productId": 5
+    },
+    {
+      "id": 23,
+      "review": "Item was as expected!",
+      "rating": 4,
+      "userId": 2,
+      "productId": 5
+    },
+    {
+      "id": 24,
+      "review": "The size fit perfectly I’m so satisfied by quality",
+      "rating": 4,
+      "userId": 1,
+      "productId": 5
+    },
+    {
+      "id": 25,
+      "review": "I don't dislike anything about the sneakers",
+      "rating": 3,
+      "userId": 3,
+      "productId": 5
+    },
+    {
+      "id": 26,
+      "review": "Very useful",
+      "rating": 5,
+      "userId": 1,
+      "productId": 6
+    },
+    {
+      "id": 27,
+      "review": "Love the style and the price",
+      "rating": 4,
+      "userId": 2,
+      "productId": 6
+    },
+    {
+      "id": 28,
+      "review": "Bought this shoes for my daughter. Its so lovely and she adores it",
+      "rating": 5,
+      "userId": 4,
+      "productId": 6
+    },
+    {
+      "id": 29,
+      "review": "The product was as advertised and I am satisfied",
+      "rating": 5,
+      "userId": 5,
+      "productId": 6
+    },
+    {
+      "id": 30,
+      "review": "Value for money",
+      "rating": 4,
+      "userId": 6,
+      "productId": 6
+    },
+    {
+      "id": 31,
+      "review": "Great fit.",
+      "rating": 4,
+      "userId": 5,
+      "productId": 7
+    },
+    {
+      "id": 32,
+      "review": "Great color, comfortable, cool looking shoe!",
+      "rating": 4,
+      "userId": 4,
+      "productId": 7
+    },
+    {
+      "id": 33,
+      "review": "Nice",
+      "rating": 3,
+      "userId": 3,
+      "productId": 7
+    },
+    {
+      "id": 34,
+      "review": "Love the product",
+      "rating": 5,
+      "userId": 2,
+      "productId": 7
+    },
+    {
+      "id": 35,
+      "review": "",
+      "rating": 5,
+      "userId": 1,
+      "productId": 7
+    },
+    {
+      "id": 36,
+      "review": "I love the fact that it came as expected, no complaints.",
+      "rating": 5,
+      "userId": 3,
+      "productId": 10
+    },
+    {
+      "id": 8,
+      "review": "I returned these since rhey were yoo tight and had no arch support.",
+      "rating": 1,
+      "userId": 5,
+      "productId": 10
+    },
+    {
+      "id": 9,
+      "review": "These shoes were ridiculously small. Like a full size small . Cute sneakers so may reorder bigger",
+      "rating": 3,
+      "userId": 5,
+      "productId": 12
+    }
+   
+]
