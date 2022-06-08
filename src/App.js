@@ -1,7 +1,7 @@
 import React from "react"
 import { Route, Routes } from 'react-router';
 
-/* import Navbar from "./components/Navbar" */
+import Navbar from "./components/Navbar"
 import Grid from "./components/Grid"
 /* import Home from "./components/Home" */
 /* import Account from "./components/Account"
@@ -24,7 +24,7 @@ export default function App() {
     return (
         <>
         <div>
-            {/* <Navbar /> */}
+             <Navbar /> 
         </div>
 
             <Routes>
