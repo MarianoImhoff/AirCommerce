@@ -1,0 +1,48 @@
+.productCard {
+  width: 80%;
+  height: 200px;
+  margin-top: 20px;
+  border: 1px solid black;
+  display: flex;
+}
+
+.imageContainer {
+  background-color: white;
+  flex: 0 0 200px;
+}
+
+.image {
+  height: 198px;
+  width: 198px;
+}
+
+.details {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+  justify-content: space-evenly;
+}
+
+.details > ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+.details > label {
+  padding: 25px;
+  line-height: 1.5em;
+}
+
+.details > .trash {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.details > .trash > p {
+  margin: 0;
+}
