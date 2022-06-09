@@ -1,21 +1,28 @@
 import React from "react"
-import shoes from "../utils/shoes.json";
+
 import ShoesCard from "./ShoesCard";
 import s from "../styles/ShoesGrid.module.css"
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Grid = () => {
-    let shoesAux = [];
-    let i = 0;
-    while (i < 9) {
-        let j = Math.floor(Math.random()* shoes.length);
-        shoesAux.push(shoes[j]);
-        i++;
-    }
+
+    const [shoeSearch, setShoeSearch] = useState([])
+    const {search} = useParams()
+    console.log(search);
+
+useEffect(() => {
+    axios.get(
+        `http://localhost:8080/api/products/${search}`)
+        .then(info => setShoeSearch(info.data))
+}, []);
+
 
     return (
         <ul className={s.shoesGrid}>
-            {shoesAux.map(shoe => <ShoesCard shoe={shoe}/>)}
-        </ul>
+            {shoeSearch.map(shoe => <ShoesCard shoe={shoe}/>)}
+        </ul> 
     )
 };
 

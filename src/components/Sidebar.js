@@ -1,19 +1,45 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import { Container, Navbar, NavDropdown, Offcanvas, Nav} from 'react-bootstrap';
 
-import { Sidebar, SidebarItem } from "react-responsive-sidebar";
+const Sidebar = ()=> {
 
-import "react-pro-sidebar/dist/css/styles.css";
-
-export default function SimpleList() {
-  const items = [
-    <SidebarItem>My current order</SidebarItem>,
-    <SidebarItem>My orders</SidebarItem>,
-    <SidebarItem>My profile</SidebarItem>,
-    <SidebarItem>Create new product</SidebarItem>,
-    <SidebarItem>Update product</SidebarItem>,
-    <SidebarItem>Manage users</SidebarItem>,
-    
-  ];
-
-  return <Sidebar breakpoint={980} content={items}></Sidebar>;
+<>
+  {[false, 'sm', 'md', 'lg', 'xl', 'xxl'].map((expand) => (
+    <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+      <Container fluid>
+        <Navbar.Brand href="#">AirCommerce</Navbar.Brand>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+        <Navbar.Offcanvas
+          id={`offcanvasNavbar-expand-${expand}`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+          placement="end"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+              Account
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Link href="#">My Current Order</Link>
+              <Link href="#">My Orders</Link>
+              <Link href="#">My Profile</Link>
+              <NavDropdown title="Filter" >
+                        <NavDropdown.Item href="">Talla</NavDropdown.Item>
+                        <NavDropdown.Item href="">Marca</NavDropdown.Item>
+                        <NavDropdown.Item href="">Precio</NavDropdown.Item>
+                    </NavDropdown>
+            </Nav>
+            <Link href="#">Create new product</Link>
+            <Link href="#">Update product</Link>
+            <Link href="#">Manage users</Link>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
+  ))}
+</>
 }
+
+export default Sidebar

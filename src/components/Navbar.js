@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
+import { Container, Navbar, Button } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from "../utils/img/Logo.jpg";
@@ -19,13 +19,9 @@ const NavBar = () => {
                         /> 
                         <h1>AirCommerce</h1>
                     </Link>
-                    <Link style={{ textDecoration: 'none' }} to="/Products">Tienda</Link>
+                    <Link style={{ textDecoration: 'none', color: "white" }} to="/Store">Tienda</Link>
 
-                    <NavDropdown title="Filter" >
-                        <NavDropdown.Item href="">Talla</NavDropdown.Item>
-                        <NavDropdown.Item href="">Marca</NavDropdown.Item>
-                        <NavDropdown.Item href="">Precio</NavDropdown.Item>
-                    </NavDropdown>
+                    <Link to="/account">My Account</Link>
 
                     <Search />
 
