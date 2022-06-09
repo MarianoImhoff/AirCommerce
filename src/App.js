@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router';
 
 import Navbar from "./components/Navbar"
 import Grid from "./components/Grid"
-/* import Home from "./components/Home" */
+import Home from "./components/Home"
 /* import Account from "./components/Account"
 import Login from "./components/Login"
 import Signup from "./components/Signup" */
@@ -28,7 +28,7 @@ export default function App() {
         </div>
 
             <Routes>
-               {/*  <Route exact path="/" element={<Home />} /> */}
+              <Route exact path="/" element={<Home />} />
                 <Route exact path="/products" element={<Grid />} />
                {/*  <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<Signup />} />
