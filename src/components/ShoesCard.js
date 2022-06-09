@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import s from "../styles/ShoesCard.module.css";
 
 const ShoesCard = ({shoe}) => {
-
+    
     return (
         <li key={shoe.id} className={s.shoesCard}>
             <Link to={`/${shoe.id}` }>

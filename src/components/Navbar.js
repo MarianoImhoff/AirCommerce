@@ -1,5 +1,10 @@
+
+
+import { Container, Navbar, Button } from 'react-bootstrap';
+
 import React, { useContext } from 'react';
-import { Container, Navbar, NavDropdown, Button } from 'react-bootstrap';
+
+
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -39,13 +44,7 @@ const NavBar = () => {
         <Link style={{ textDecoration: 'none' }} to="/Products">
           Tienda
         </Link>
-
-        <NavDropdown title="Filter">
-          <NavDropdown.Item href="">Talla</NavDropdown.Item>
-          <NavDropdown.Item href="">Marca</NavDropdown.Item>
-          <NavDropdown.Item href="">Precio</NavDropdown.Item>
-        </NavDropdown>
-
+<Link to="/account">My Account</Link>
         <Search />
 
         {user ? (
@@ -69,3 +68,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
