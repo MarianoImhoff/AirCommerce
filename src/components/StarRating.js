@@ -5,7 +5,7 @@ const StarRating = ({review}) => {
     return(
         <div>
         {[...Array(5)].map((star, index) => {
-            return index < review.rating ? <FaStar className={s.faStar}/> : <FaRegStar className={s.faRegStar}/> ;
+            return index < review.rating ? <FaStar key={index} className={s.faStar}/> : <FaRegStar key={index} className={s.faRegStar}/> ;
           })}
         </div>
     )
