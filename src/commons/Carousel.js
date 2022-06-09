@@ -5,7 +5,6 @@ import "../styles/Carousel.scss";
 
 const Carousel = ({id}) => {
     let reviewsAux = [];
-    console.log(reviews)
     for (let i = 0; i < reviews.length; i++) {
         if (reviews[i].productId === (id+1)) {
             reviewsAux.push(reviews[i])
@@ -15,12 +14,11 @@ const Carousel = ({id}) => {
     return(
         <div className="slider">
             <ul> 
-                {reviewsAux.map(review => <ReviewCard review={review}/>)}    
+                {reviewsAux.map(review => <ReviewCard key={review.id} review={review}/>)}    
             </ul>
         </div>
     )
 
 }
-
 
 export default Carousel;
