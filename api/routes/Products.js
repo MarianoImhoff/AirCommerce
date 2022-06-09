@@ -28,18 +28,23 @@ router.get('/', async (req, res) => {
 router.get('/:search', async (req, res) => {
   try {
     let search = req.params.search;
-    search = search.toLowerCase()
+    search = search.toLowerCase();
     const product = await Products.findAll({
-        where:{[Op.or]:[{brand:search},{model:search},{color:search}]}
-    })
+      where: {
+        [Op.or]: [{ brand: search }, { model: search }, { color: search }],
+      },
+    });
+    console.log(product);
     res.status(200).send(product);
-  } catch (error) {console.log(error)}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get('/:name', async (req, res) => {
   try {
     let name = req.params.name;
-    name= name.toLowerCase()
+    name = name.toLowerCase();
     const product = await Products.findOne({ where: { name } });
     res.status(200).send(product);
   } catch (error) {

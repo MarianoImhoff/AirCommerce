@@ -1,154 +1,207 @@
 import React from 'react';
-import { Container, Button, Form } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
-import s from '../styles/LogIn_SignUp.module.css';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
+import { TextField } from '../commons/TextField';
+// import useInput from '../hooks/useInput';
 
 const Signup = () => {
-  const navigate = useNavigate();
 
-  //Formik, semantic and yup are used to validate the form inputs in an easier way
+  const navigate = new useNavigate();
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      dni: '',
-      address: '',
-      phone: '',
-      password: '',
-      repeatPassword: '',
-    },
-    validationSchema: Yup.object({
-      firstName: Yup.string().required('First name is required'),
-      lastName: Yup.string().required('Last name is required'),
-      email: Yup.string()
-        .email('A valid email is required')
-        .required('Email is required'),
-      dni: Yup.number().required('DNI is required'),
-      address: Yup.string().required('Address is required'),
-      phone: Yup.number().required('Phone number is required'),
-      password: Yup.string()
-        .required()
-        .oneOf(
-          [Yup.ref('repeatPassword')],
-          'Entered passwords must be the same'
-        ),
-      repeatPassword: Yup.string()
-        .required()
-        .oneOf([Yup.ref('password')], 'Entered passwords must be the same'),
-    }),
-    onSubmit: (user) => {
-      axios
-        .post('http://localhost:8080/api/users/register', {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          dni: user.dni,
-          address: user.address,
-          phone: user.phone,
-          password: user.password,
-        })
-        .then((serverAnswer) => {
-          alert(serverAnswer.data);
-          navigate('/login');
-        });
-    },
+  const handleRegister = (values) => {
+    console.log('REGISTRAR');
+    axios
+      .post('/users/register', {
+        name: values.name,
+        surname: values.surname,
+        email: values.email,
+        dni: values.dni,
+        address: values.address,
+        password: values.password,
+      })
+      .then((user) => {
+        console.log(user);
+        navigate('/login');
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const validate = Yup.object({
+    name: Yup.string().required('Se requiere un nombre'),
+    surname: Yup.string().required('Se requiere un apellido'),
+    email: Yup.string()
+      .email('El email ingresado no es válido')
+      .required('Se requiere un email'),
+    dni: Yup.number()
+      .min(7, 'El DNI debe tener al menos 7 cifras')
+      .required('Se requiere su número de DNI'),
+    address: Yup.string().required('Se requiere un domicilio'),
+    password: Yup.string()
+      .min(6, 'La contraseña debe tener al menos 6 caracteres')
+      .required('Se requiere contraseña'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'La contraseña no coincide')
+      .required('Se requiere confirmación de contraseña'),
   });
-
   return (
-    <Container className={s.container}>
-      <Form className={s.form} onSubmit={formik.handleSubmit}>
-        <h3>Enter your first name</h3>
-        <Form.Input
-          className={s.input}
-          type="text"
-          name="firstName"
-          placeholder="first name"
-          onChange={formik.handleChange}
-          value={formik.values.firstName}
-          error={formik.errors.firstName && true}
-        />
-        <h3>Enter your last name</h3>
-        <Form.Input
-          className={s.input}
-          type="text"
-          name="lastName"
-          placeholder="last name"
-          onChange={formik.handleChange}
-          value={formik.values.lastName}
-          error={formik.errors.lastName && true}
-        />
-        <h3>Enter your email</h3>
-        <Form.Input
-          className={s.input}
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          error={formik.errors.email && true}
-        />
-        <h3>Enter your DNI</h3>
-        <Form.Input
-          className={s.input}
-          type="text"
-          name="dni"
-          placeholder="dni"
-          onChange={formik.handleChange}
-          value={formik.values.dni}
-          error={formik.errors.dni && true}
-        />
-        <h3>Enter your address</h3>
-        <Form.Input
-          className={s.input}
-          type="text"
-          name="address"
-          placeholder="address"
-          onChange={formik.handleChange}
-          value={formik.values.address}
-          error={formik.errors.address && true}
-        />
-        <h3>Enter your phone number</h3>
-        <Form.Input
-          className={s.input}
-          type="text"
-          name="phone"
-          placeholder="phone"
-          onChange={formik.handleChange}
-          value={formik.values.phone}
-          error={formik.errors.phone && true}
-        />
-        <h3>Enter your password</h3>
-        <Form.Input
-          className={s.input}
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          error={formik.errors.password && true}
-        />
-        <h3>Re-enter your password</h3>
-        <Form.Input
-          className={s.input}
-          type="password"
-          name="repeatPassword"
-          placeholder="password"
-          onChange={formik.handleChange}
-          value={formik.values.repeatPassword}
-          error={formik.errors.repeatPassword && true}
-        />{' '}
-        <br />
-        <Button className={s.button} type="submit">
-          CONTINUE
-        </Button>
-      </Form>
-    </Container>
+    <Formik
+      initialValues={{
+        name: '',
+        surname: '',
+        email: '',
+        dni: '',
+        address: '',
+        password: '',
+        confirmPassword: '',
+      }}
+      validationSchema={validate}
+      onSubmit={(values) => {
+        handleRegister(values);
+      }}
+    >
+      {(formik) => (
+        <div>
+          <h3>Sign In</h3>
+          <Form>
+            <TextField label="Nombre" name="name" type="text" />
+            <TextField label="Apellido" name="surname" type="text" />
+            <TextField label="Email" name="email" type="email" />
+            <TextField label="DNI" name="dni" type="text" />
+            <TextField label="Domicilio" name="address" type="text" />
+            <TextField label="Password" name="password" type="password" />
+            <TextField
+              label="Confirmá password"
+              name="confirmPassword"
+              type="password"
+            />
+            <button type="submit">Sign Up</button>
+            <button type="reset">Reset</button>
+          </Form>
+        </div>
+      )}
+    </Formik>
   );
+
+  // VERSIÓN SIN FORMIK
+
+  // const navigate = new useNavigate();
+
+  // const name = useInput('name');
+  // const surname = useInput('surname');
+  // const email = useInput('email');
+  // const dni = useInput('dni');
+  // const address = useInput('address');
+  // const password = useInput('password');
+
+  // const handleRegister = (event) => {
+  //   event.preventDefault();
+  //   console.log('REGISTRAR');
+  //   axios
+  //     .post('/users/register', {
+  //       name: name.value,
+  //       surname: surname.value,
+  //       email: email.value,
+  //       dni: dni.value,
+  //       address: address.value,
+  //       password: password.value,
+  //     })
+  //     .then((user) => {
+  //       console.log(user);
+  //       navigate('/login');
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // return (
+  //   <div className="">
+  //     <h3 className="">Sign In</h3>
+  //     <form onSubmit={handleRegister}>
+  //       <div className="">
+  //         <label className="">Nombres</label>
+  //         <div className="">
+  //           <input
+  //             className="input"
+  //             type="text"
+  //             placeholder="Tus nombres"
+  //             required
+  //             {...name}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="">
+  //         <label className="">Apellidos</label>
+  //         <div className="">
+  //           <input
+  //             className="input"
+  //             type="text"
+  //             placeholder="Tus apellidos"
+  //             required
+  //             {...surname}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="">
+  //         <label className="">E-mail</label>
+  //         <div className="">
+  //           <input
+  //             className="input"
+  //             type="text"
+  //             placeholder="Tu e-mail"
+  //             required
+  //             {...email}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="">
+  //         <label className="">DNI</label>
+  //         <div className="">
+  //           <input
+  //             className="input"
+  //             type="text"
+  //             placeholder="Tu dni"
+  //             required
+  //             {...dni}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="">
+  //         <label className="">Domicilio</label>
+  //         <div className="">
+  //           <input
+  //             className="input"
+  //             type="text"
+  //             placeholder="Tu dirección"
+  //             required
+  //             {...address}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="">
+  //         <label className="">Password</label>
+  //         <p className="">
+  //           <input
+  //             className="input"
+  //             type="password"
+  //             placeholder="Password"
+  //             required
+  //             {...password}
+  //           />
+  //           <span className="">
+  //             <i className=""></i>
+  //           </span>
+  //         </p>
+  //       </div>
+  //       <div className="">
+  //         <p className="">
+  //           <button className="">Sign In</button>
+  //         </p>
+  //       </div>
+  //     </form>
+  //   </div>
+  // );
 };
 
 export default Signup;

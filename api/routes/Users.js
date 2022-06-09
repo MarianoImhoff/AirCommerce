@@ -66,7 +66,7 @@ router.get('/me', (req, res) => {
 
 //Logout
 
-router.post('logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.logOut();
   res.sendStatus(200);
 });
