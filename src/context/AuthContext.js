@@ -1,4 +1,6 @@
 import { useState, createContext } from "react";
+import { useEffect } from "react";
+
 
 //estado inicial para el contexto
 const authContextInitialState = {
@@ -21,6 +23,13 @@ const AuthContextProvider = ({ children }) => {
       user: user,
       isAuthenticated: !loggedIn.isAuthenticated,
     });
+
+    useEffect(() => {
+      const userStorage = JSON.parse(localStorage.getItem("user"));
+      userStorage
+        ? setLoggedIn({ user: userStorage.name, isAuthenticated: true })
+        : setLoggedIn({ user: null, isAuthenticated: false });
+    }, []);
 
   return (
     <AuthContext.Provider value={{ ...loggedIn, toggleAuth }}>

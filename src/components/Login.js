@@ -24,15 +24,17 @@ const LogIn = () => {
         password: password.value,
       })
       .then((user) => {
-        console.log('USUARIO LOGUEADO');
-        console.log(user.data);
-        toggleAuth(user);
-        navigate('/products');
+        //console.log('USUARIO LOGUEADO');
+        //console.log(user.data);
+        localStorage.setItem("user", JSON.stringify(user.data))
+        toggleAuth(user.data.name);
+       
       })
+      .then(()=>  navigate('/Store'))
       .catch((err) => console.log('ERROR: ', err));
   };
 
-  console.log(user);
+  
 
   return (
     <div className="">

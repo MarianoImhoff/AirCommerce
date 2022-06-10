@@ -27,6 +27,7 @@ const Store = () => {
                 }
             };
             setStore(shoesAux)
+            
 
         } catch (error) { console.log(error)  }
     }, []);

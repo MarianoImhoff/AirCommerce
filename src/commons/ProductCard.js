@@ -4,18 +4,19 @@ import { Link } from 'react-router-dom';
 import s from '../styles/ProductCard.module.css';
 
 const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
+  console.log(shoe)
   const handleChange = (event) => {
-    handleQuantity(shoe.id, event.target.value);
+    handleQuantity(shoe.barcode, event.target.value);
   };
 
   const handleClick = () => {
-    handleRemoveItem(shoe.id);
+    handleRemoveItem(shoe.barcode);
   };
 
   return (
-    <div className={s.productCard} key={shoe.id}>
+    <div className={s.productCard} key={shoe.barcode}>
       <div className={s.imageContainer}>
-        <Link to={`/product_view/${shoe.id}`}>
+        <Link to={`/product_view/${shoe.barcode}`}>
           <img
             className={s.image}
             src={require(`../utils/img${shoe.url_path}`)}

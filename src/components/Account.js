@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+//import Sidebar from './Sidebar'
 
 const Account = () => {
     return (
@@ -7,7 +7,7 @@ const Account = () => {
             <h1>
                 My Account
             </h1>
-            <Sidebar />
+           
         </div>
     )
 }

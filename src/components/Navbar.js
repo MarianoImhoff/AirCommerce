@@ -3,27 +3,29 @@
 import { Container, Navbar, Button } from 'react-bootstrap';
 
 import React, { useContext } from 'react';
-
+import { useNavigate } from 'react-router';
 
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../utils/img/Logo.jpg';
 import Search from './Search';
-
 import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
-
+  console.log(user);
+const navigate = useNavigate()
   const handleLogout = () => {
     console.log('TRYING LOGOUT...');
     axios
       .post('/users/logout')
       .then((res) => {
         console.log(res);
+        localStorage.removeItem("user")
         toggleAuth(null);
         console.log('LOGOUT DONE');
+        navigate("/")
       })
       .catch((err) => console.log('ERROR: ', err));
   };
@@ -41,21 +43,28 @@ const NavBar = () => {
           />
           <h1>AirCommerce</h1>
         </Link>
-        <Link style={{ textDecoration: 'none' }} to="/Products">
+        <Link style={{ textDecoration: 'none' }} to="/Store">
           Tienda
         </Link>
-<Link to="/account">My Account</Link>
+
         <Search />
 
         {user ? (
+          <>
           <Button onClick={handleLogout} variant="outline-success">
             Logout
           </Button>
-        ) : (
+          <Link to= {`/account/${user}`}>
+          <Button variant="outline-success">{user}</Button>
+        </Link>
+        </>
+        ) : (  
           <Link to="/Login">
             <Button variant="outline-success">Login</Button>
           </Link>
         )}
+
+
 
         <Link to="/Cart">
           <Button variant="outline-success">

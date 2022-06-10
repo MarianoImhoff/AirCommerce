@@ -19,9 +19,9 @@ const Cart = () => {
   const [cartList, setCartList] = useState(selectedShoes);
   const [subtotal, setSubtotal] = useState(0);
 
-  const handleQuantity = (id, newQ) => {
+  const handleQuantity = (barcode, newQ) => {
     const updatedList = cartList.map((shoe) => {
-      if (shoe.id === id) {
+      if (shoe.barcode === barcode) {
         return {
           ...shoe,
           quantity: newQ,
@@ -32,8 +32,8 @@ const Cart = () => {
     setCartList(updatedList);
   };
 
-  const handleRemoveItem = (id) => {
-    const updatedList = cartList.filter((shoe) => shoe.id !== id);
+  const handleRemoveItem = (barcode) => {
+    const updatedList = cartList.filter((shoe) => shoe.barcode !== barcode);
     setCartList(updatedList);
   };
 
@@ -57,7 +57,7 @@ const Cart = () => {
             shoe={shoe}
             handleQuantity={handleQuantity}
             handleRemoveItem={handleRemoveItem}
-            key={shoe.id}
+            key={shoe.barcode}
           />
         ))}
       </div>
@@ -66,7 +66,7 @@ const Cart = () => {
           <h4>SUBTOTAL</h4>
           <ul>
             {cartList.map((shoe) => (
-              <li key={shoe.id}>
+              <li key={shoe.barcode}>
                 {shoe.quantity} x {shoe.model}:<br />
                 USD {Math.round(shoe.quantity * shoe.price)}
               </li>
