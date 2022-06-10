@@ -41,7 +41,7 @@ const navigate = useNavigate()
             style={{ borderRadius: '5px' }}
             alt="logo"
           />
-          <h1 style={{display:"flex", color:"white", marginLeft:"10px"}}>AirCommerce</h1>
+          <h1 style={{display:"flex", color:"white", marginLeft:"10px", marginTop:"15px"}}>AirCommerce</h1>
         </Link>
         <Link  to="/Store">
           <Button variant="outline-success">Tienda</Button>
