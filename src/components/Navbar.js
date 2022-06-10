@@ -33,7 +33,7 @@ const navigate = useNavigate()
   return (
     <Navbar bg="dark" expand="md">
       <Container fluid>
-        <Link style={{ paddingLeft: 13, textDecoration: 'none' }} to="/">
+        <Link style={{display:"flex", paddingLeft:"13px", textDecoration:'none',alignItems:"center" }} to="/">
           <img
             src={logo}
             width="80"
@@ -41,10 +41,10 @@ const navigate = useNavigate()
             style={{ borderRadius: '5px' }}
             alt="logo"
           />
-          <h1>AirCommerce</h1>
+          <h1 style={{display:"flex", color:"white", marginLeft:"10px"}}>AirCommerce</h1>
         </Link>
-        <Link style={{ textDecoration: 'none' }} to="/Store">
-          Tienda
+        <Link  to="/Store">
+          <Button variant="outline-success">Tienda</Button>
         </Link>
 
         <Search />
