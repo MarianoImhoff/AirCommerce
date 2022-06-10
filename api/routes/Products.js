@@ -41,11 +41,10 @@ router.get('/:search', async (req, res) => {
   }
 });
 
-router.get('/:name', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    let name = req.params.name;
-    name = name.toLowerCase();
-    const product = await Products.findOne({ where: { name } });
+    let id = req.params.id
+    const product = await Products.findOne({ where: { id } });
     res.status(200).send(product);
   } catch (error) {
     res.status(400).send(error);
