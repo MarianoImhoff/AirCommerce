@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from 'react';
-
 import { useNavigate } from "react-router";
-
+import styles from "../styles/Search.css"
+import { ImSearch } from 'react-icons/im';
 
 const Search = () => {
     const [searchText, setSearchText] = useState("");
@@ -10,7 +10,7 @@ const Search = () => {
 
     const handleSubmit = () => {
        
-        navigate(`/Products/${searchText}`)
+        navigate(`/Store/${searchText}`)
     };
 
     const handleChange = (e) => {
@@ -20,15 +20,17 @@ const Search = () => {
 
     return (
         <>
-            <form className="d-flex" onSubmit={handleSubmit} >
+            <form class="searchContainer" onSubmit={handleSubmit} >
+                <div class="searchBox">
                 <input
                     type="search"
                     placeholder="Search"
-                    className="me-2"
+                    className="searchInput"
                     aria-label="Search"
                     onChange={handleChange}
                 />
-                <button variant="outline-success">Search</button>
+                <button class="searchButton" variant="outline-success"><ImSearch  /></button>
+                </div>
             </form>    
         </>
     );
