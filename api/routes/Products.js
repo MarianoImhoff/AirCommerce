@@ -34,7 +34,6 @@ router.get('/:search', async (req, res) => {
         [Op.or]: [{ brand: search }, { model: search }, { color: search }],
       },
     });
-    console.log(product);
     res.status(200).send(product);
   } catch (error) {
     console.log(error);
