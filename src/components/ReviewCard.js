@@ -15,11 +15,11 @@ const ReviewCard = ({review}) => {
 
     return(
         <li>
-            <p>
+            <span>
                 {<FaUserCircle style={{color: 'grey', fontSize: '1em'}}/> } {findUser(review.userId)}
                 {<StarRating review={review}/>}<br/>
                 {review.review}
-            </p>
+            </span>
         </li>
     )
 }
