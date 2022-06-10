@@ -1,6 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom";
 import s from "../styles/ShoesCard.module.css";
+import capitalizeFirst from "../utils/functions/capitalizeFunction";
 
 const ShoesCard = ({shoe}) => {
     
@@ -9,10 +10,9 @@ const ShoesCard = ({shoe}) => {
             <Link to={`/${shoe.id}` }>
                 <img className={s.shoesImage} src={require(`../utils/img${shoe.url_path}`)} alt={shoe.model}></img>
             </Link>
-            <div>{shoe.brand}</div>
-            <div>{shoe.model}</div>
+            <div>{capitalizeFirst(shoe.brand)}</div>
+            <div>{capitalizeFirst(shoe.model)}</div>
             <div>{`USD ${shoe.price}`}</div>
-            {/* <div>{shoe.rating === 0 ? "Not yet rated" : shoe.rating}</div> */}
         </li>
     )
 }

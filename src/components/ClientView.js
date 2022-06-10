@@ -1,24 +1,23 @@
 import s from "../styles/ProductView.module.css";
+import capitalizeFirst from "../utils/functions/capitalizeFunction";
+//import Button from "../commons/Button";
 
 const ClientView = ({shoes, id}) => {
 
-  console.log(shoes)
+  //localStorage.isAdmin 
 
   let buttonName = "Add to cart";
     return (
         <div>
-            <p className={s.productTitle}>{`${shoes[id].brand} ${ shoes[id].model}`}</p> 
-                <p>{`Size: ${shoes[id].size}`}</p> 
-                <p>{`Color: ${shoes[id].color}`}</p> 
-                <p>{`Stock: ${shoes[id].stock} available`}</p> 
-                <p>{`Price: USD ${shoes[id].price}`}</p> 
-                {/* <p>{`Rating: ${shoes[id].rating === 0 ? "Not yet rated" : shoes[id].rating}`}</p> */} <br/>
-                <button className={s.productButton}
+            <p className={s.productTitle}>{`${capitalizeFirst(shoes.brand)} ${capitalizeFirst(shoes.model)}`}</p> 
+            <p><span>Size: </span><span>{`${shoes.size}`}</span></p> 
+            <p><span>Color: </span>{`${capitalizeFirst(shoes.color)}`}</p> 
+            <p>{`Stock: ${shoes.stock} available`}</p> 
+            <p>{`Price: USD ${shoes.price}`}</p> 
+            <button className={s.productButton}
                 type="submit"
-                >{buttonName}</button>
+            >{buttonName}</button>
         </div>
-                
-        
     )
 }
 

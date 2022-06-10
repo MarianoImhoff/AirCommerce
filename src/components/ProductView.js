@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router";
-import shoes from "../utils/shoes.json";
+import find from '../utils/functions/findFunction';
 import Carousel from "../commons/Carousel";
-//import Button from "../commons/Button";
 import s from "../styles/ProductView.module.css";
 import ClientView from './ClientView.js';
 
-const ProductView = () => {
-    let id = useLocation().pathname.slice(1) - 1;
-    let buttonName = "Add to cart";
 
-    const isAdmin = false; //Esto se debe traer de la db y almacenarse en el contexto
+const ProductView = () => {
+    let id = useLocation().pathname.slice(1);
+    const [shoes, setShoes] = useState({});
+
+    useEffect(() => {
+        find(`/products/${id}`)
+        .then(productObj => setShoes(productObj))
+        .catch(error => console.log(error))
+    }, [id])
+
+    if(shoes.model === undefined) return null;
 
     return (
-        <>
         <div className={s.productContainer}>
-            <img className={`${s.column} ${s.productImg}`} src={require(`../utils/img${shoes[id].url_path}`)} alt={shoes[id].name}></img>
-            <div className={`${s.column} ${s.productDetails}`}>
-            {}
-            <ClientView shoes={shoes} id={id}/>
-            </div>
+            <img className={`${s.column} ${s.productImg}`} src={require(`../utils/img${shoes.url_path}`)} alt={shoes.model}></img>
+            <div className={`${s.column} ${s.productDetails}`}><ClientView shoes={shoes} id={id}/></div>
             <Carousel id={id}/>
         </div>
-
-        </>
     )
 }
 
