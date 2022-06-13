@@ -1,0 +1,14 @@
+.shoesCard {
+    list-style: none;
+    text-decoration: none;
+    
+}
+
+.shoesImage {
+    text-decoration: none;
+    border-radius: 5%;
+    height: 20em;
+    width: 20em;
+}
+
+

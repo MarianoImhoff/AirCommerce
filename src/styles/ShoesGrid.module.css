@@ -1,0 +1,66 @@
+.shoesGrid {
+    display: grid;
+    grid-template-rows: 3;
+    grid-row-gap: 5%;
+    grid-column-gap: 5%;
+    grid-template-columns: repeat(3, 1fr);
+    text-decoration: none;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+@media only screen and (min-width:820px) and (max-width:1100px){
+    .shoesGrid {
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width:819px){
+    .shoesGrid {
+        grid-template-columns: 100%;
+    }
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdownContent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdownContent a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdownContent {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
