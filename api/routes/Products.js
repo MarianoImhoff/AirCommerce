@@ -23,7 +23,21 @@ router.get("/:id",(req,res)=>{
     Products.findOne({where:{id}})
     .then(products => res.status(200).send(products))
     .catch(error => console.log(error))
+
 });
+
+  }); 
+/*
+  router.get('/:id', async (req, res) => {
+    try {
+      const {id} = req.params
+      const product = await Products.findOne({ where: { id } });
+      res.status(200).send(product);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });*/
+
 
 router.get('/:search', async (req, res) => {
   try {
@@ -40,15 +54,6 @@ router.get('/:search', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
-  try {
-    let id = req.params.id
-    const product = await Products.findOne({ where: { id } });
-    res.status(200).send(product);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
 
 /* router.post("/",(req,res)=>{
     Products.create(req.body)
