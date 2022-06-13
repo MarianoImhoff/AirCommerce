@@ -10,18 +10,17 @@
   animation: slider 1s infinite linear alternate-reverse;
 }
 
-
-
 .slider ul {
   padding: 0;
   display: flex;
-  width: 100%; /* // por cada imagen son 100% de width */
-  animation: 120s infinite linear cambio ;
+  width: 100%;
+  /* // por cada imagen son 100% de width */
+  animation: 120s infinite linear cambio;
 }
 
 .slider ul :hover {
-  cursor               : pointer;
-  animation-play-state : paused;
+  cursor: pointer;
+  animation-play-state: paused;
 }
 
 .slider li {
@@ -34,12 +33,11 @@
   transform: scale(1.05);
   opacity: 1;
   transition-duration: 1s;
- 
 }
 
 .slider span {
   border-radius: 5%;
-  display:block;
+  display: block;
   align-items: ceil($number: 2);
   margin: 5%;
   font-size: 0.7em;
@@ -50,19 +48,12 @@
   height: 90%;
 }
 
- @keyframes slider {
-    from{
-     transform: translateX(1%);
-    }
-    to{
-    transform: translateX(2%)
-    }
-} 
+@keyframes slider {
+  from {
+    transform: translateX(1%);
+  }
 
-
-
-
-
-
-
-
+  to {
+    transform: translateX(2%);
+  }
+}
