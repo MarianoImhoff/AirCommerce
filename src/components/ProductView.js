@@ -11,7 +11,7 @@ const ProductView = () => {
     const [shoes, setShoes] = useState({});
 
     useEffect(() => {
-        find(`/products/${id}`)
+        find(`/products/single/${id}`)
         .then(productObj => setShoes(productObj))
         .catch(error => console.log(error))
     }, [id])

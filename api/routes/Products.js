@@ -18,14 +18,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get("/:id",(req,res)=>{
+/* router.get("/:id",(req,res)=>{
     const {id} = req.params
     Products.findOne({where:{id}})
     .then(products => res.status(200).send(products))
     .catch(error => console.log(error))
-});
+}); */
 
 router.get('/:search', async (req, res) => {
+  console.log("Estoy sercheando", req.params)
   try {
     let search = req.params.search;
     search = search.toLowerCase();
@@ -40,9 +41,10 @@ router.get('/:search', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/single/:id', async (req, res) => {
   try {
     let id = req.params.id
+    console.log(id)
     const product = await Products.findOne({ where: { id } });
     res.status(200).send(product);
   } catch (error) {
