@@ -100,4 +100,19 @@ const products= await Products
 }
 }); */
 
+// Inicio de login con authenticator de google
+router.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+// Continuacion de login con authenticator de google
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: 'http://localhost:3000/',
+    failureRedirect: 'http://localhost:3000/login',
+  })
+);
+
 module.exports = router;
