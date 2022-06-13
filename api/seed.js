@@ -141,21 +141,14 @@ Users.bulkCreate([
   {
     name: 'superAdmin',
     surname: 'superAdmin',
-<<<<<<< HEAD
-    email: 'MMNSC@MMNSC.com',
-    password: 'admin',
-=======
     email: 'superadmin@admin.com',
     password: 'superadmin',
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
     address: 'admin house',
     dni: 44264552,
     isAdmin: true,
     superAdmin: true,
   },
   {
-<<<<<<< HEAD
-=======
     name: 'admin',
     surname: 'admin',
     email: 'admin@admin.com',
@@ -166,7 +159,6 @@ Users.bulkCreate([
     superAdmin: false,
   },
   {
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
     name: 'freddie',
     surname: 'mercury',
     email: 'freddie@hotmail.com',
