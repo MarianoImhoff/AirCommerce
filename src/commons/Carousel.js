@@ -8,9 +8,11 @@ const Carousel = ({id}) => {
     let reviewsAux = [];
     for (let i = 0; i < reviews.length; i++) {
         if (reviews[i].productId.toString() === id) {
-           reviewsAux.push(reviews[i])
+            reviewsAux.push(reviews[i])
         }
     }
+   
+
 /*     const productId = id;
     const [reviews, setReviews] = useState({})
     useEffect(() => {
@@ -20,10 +22,12 @@ const Carousel = ({id}) => {
     }, []) */
     //console.log(reviewsAux)
     return(
+        <div className="contenedor">
         <div className="slider">
             <ul> 
                 {reviewsAux.map(review => <ReviewCard key={review.id} review={review}/>)}    
             </ul>
+        </div>
         </div>
     )
 
