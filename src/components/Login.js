@@ -96,14 +96,11 @@ const LogIn = () => {
             Don't have an accout?&nbsp;
             <Link to="/signup">Sign up</Link>
           </p>
-<<<<<<< HEAD
-=======
           <p>
             <a href="http://localhost:8080/api/users/auth/google">
               Log in with Google
             </a>
           </p>
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
         </div>
       )}
     </Formik>

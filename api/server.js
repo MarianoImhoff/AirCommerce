@@ -9,14 +9,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
-<<<<<<< HEAD
-const LocalStrategy = require('passport-local').Strategy;
-=======
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 const LocalStrategy = require('passport-local').Strategy;
 
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
 const PORT = 8080;
 
 app.use(volleyball);
@@ -54,8 +50,6 @@ passport.use(
   )
 );
 
-<<<<<<< HEAD
-=======
 const authUser = async (request, accessToken, refreshToken, profile, done) => {
   const user = await Users.findOne({
     where: {
@@ -81,7 +75,6 @@ passport.use(
   )
 );
 
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
@@ -100,7 +93,3 @@ db.sync({ force: false })
     });
   })
   .catch(console.error);
-<<<<<<< HEAD
-  
-=======
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075

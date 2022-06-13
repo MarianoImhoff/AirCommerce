@@ -100,8 +100,6 @@ const products= await Products
 }
 }); */
 
-<<<<<<< HEAD
-=======
 // Inicio de login con authenticator de google
 router.get(
   '/auth/google',
@@ -117,5 +115,4 @@ router.get(
   })
 );
 
->>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
 module.exports = router;
