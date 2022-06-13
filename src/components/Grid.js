@@ -10,7 +10,7 @@ const Grid = () => {
 
     const [shoeSearch, setShoeSearch] = useState([])
     const {search} = useParams()
-    console.log(search);
+   // console.log(search);
 
 useEffect(() => {
     axios.get(

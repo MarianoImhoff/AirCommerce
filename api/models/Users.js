@@ -31,11 +31,11 @@ Users.init(
       allowNull: false,
     },
     isAdmin: {
-      type: S.STRING,
+      type: S.BOOLEAN,
       defaultValue: false,
     },
     superAdmin: {
-      type: S.STRING,
+      type: S.BOOLEAN,
       defaultValue: false,
     },
     salt: {
