@@ -1,14 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
-import { TextField } from '../commons/TextField';
-// import useInput from '../hooks/useInput';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 const Signup = () => {
-
   const navigate = new useNavigate();
 
   const handleRegister = (values) => {
@@ -36,13 +34,12 @@ const Signup = () => {
       .email('El email ingresado no es válido')
       .required('Se requiere un email'),
     dni: Yup.number()
-      .min(7, 'El DNI debe tener al menos 7 cifras')
       .required('Se requiere su número de DNI'),
     address: Yup.string().required('Se requiere un domicilio'),
     password: Yup.string()
       .min(6, 'La contraseña debe tener al menos 6 caracteres')
       .required('Se requiere contraseña'),
-    confirmPassword: Yup.string()
+    confirmpassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'La contraseña no coincide')
       .required('Se requiere confirmación de contraseña'),
   });
@@ -55,153 +52,143 @@ const Signup = () => {
         dni: '',
         address: '',
         password: '',
-        confirmPassword: '',
+        confirmpassword: '',
       }}
       validationSchema={validate}
       onSubmit={(values) => {
         handleRegister(values);
       }}
     >
-      {(formik) => (
-        <div>
-          <h3>Sign In</h3>
+      {(formik, isSubmitting) => (
+        <div className="container w-75 mt-4">
+          <h3>Sign Up</h3>
           <Form>
-            <TextField label="Nombre" name="name" type="text" />
-            <TextField label="Apellido" name="surname" type="text" />
-            <TextField label="Email" name="email" type="email" />
-            <TextField label="DNI" name="dni" type="text" />
-            <TextField label="Domicilio" name="address" type="text" />
-            <TextField label="Password" name="password" type="password" />
-            <TextField
-              label="Confirmá password"
-              name="confirmPassword"
-              type="password"
-            />
-            <button type="submit">Sign Up</button>
-            <button type="reset">Reset</button>
+            <div className="form-group">
+              <label htmlFor="name">Nombre</label>
+              <Field
+                name="name"
+                className={
+                  formik.touched.name && formik.errors.name
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="text"
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <div className="invalid-feedback">{formik.errors.name}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="surname">Apellido</label>
+              <Field
+                name="surname"
+                className={
+                  formik.touched.surname && formik.errors.surname
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="text"
+              />
+              {formik.touched.surname && formik.errors.surname ? (
+                <div className="invalid-feedback">{formik.errors.surname}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">E-mail</label>
+              <Field
+                name="email"
+                className={
+                  formik.touched.email && formik.errors.email
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="email"
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="invalid-feedback">{formik.errors.email}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="dni">DNI</label>
+              <Field
+                name="dni"
+                className={
+                  formik.touched.dni && formik.errors.dni
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="text"
+              />
+              {formik.touched.dni && formik.errors.dni ? (
+                <div className="invalid-feedback">{formik.errors.dni}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Domicilio</label>
+              <Field
+                name="address"
+                className={
+                  formik.touched.address && formik.errors.address
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="text"
+              />
+              {formik.touched.address && formik.errors.address ? (
+                <div className="invalid-feedback">{formik.errors.address}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Field
+                name="password"
+                className={
+                  formik.touched.password && formik.errors.password
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="password"
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div className="invalid-feedback">{formik.errors.password}</div>
+              ) : null}
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmpassword">Confirmá tu password</label>
+              <Field
+                name="confirmpassword"
+                className={
+                  formik.touched.confirmpassword &&
+                  formik.errors.confirmpassword
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+                type="password"
+              />
+              {formik.touched.confirmpassword &&
+              formik.errors.confirmpassword ? (
+                <div className="invalid-feedback">
+                  {formik.errors.confirmpassword}
+                </div>
+              ) : null}
+            </div>
+            <div className="mt-4 d-flex flex-row">
+              <div className="form-group me-4">
+                <Button type="submit" variant="dark">
+                  Registrarme
+                </Button>
+              </div>
+              <div className="form-group">
+                <Button type="reset" variant="dark">
+                  Borrar Formulario
+                </Button>
+              </div>
+            </div>
           </Form>
         </div>
       )}
     </Formik>
   );
-
-  // VERSIÓN SIN FORMIK
-
-  // const navigate = new useNavigate();
-
-  // const name = useInput('name');
-  // const surname = useInput('surname');
-  // const email = useInput('email');
-  // const dni = useInput('dni');
-  // const address = useInput('address');
-  // const password = useInput('password');
-
-  // const handleRegister = (event) => {
-  //   event.preventDefault();
-  //   console.log('REGISTRAR');
-  //   axios
-  //     .post('/users/register', {
-  //       name: name.value,
-  //       surname: surname.value,
-  //       email: email.value,
-  //       dni: dni.value,
-  //       address: address.value,
-  //       password: password.value,
-  //     })
-  //     .then((user) => {
-  //       console.log(user);
-  //       navigate('/login');
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // return (
-  //   <div className="">
-  //     <h3 className="">Sign In</h3>
-  //     <form onSubmit={handleRegister}>
-  //       <div className="">
-  //         <label className="">Nombres</label>
-  //         <div className="">
-  //           <input
-  //             className="input"
-  //             type="text"
-  //             placeholder="Tus nombres"
-  //             required
-  //             {...name}
-  //           />
-  //         </div>
-  //       </div>
-  //       <div className="">
-  //         <label className="">Apellidos</label>
-  //         <div className="">
-  //           <input
-  //             className="input"
-  //             type="text"
-  //             placeholder="Tus apellidos"
-  //             required
-  //             {...surname}
-  //           />
-  //         </div>
-  //       </div>
-  //       <div className="">
-  //         <label className="">E-mail</label>
-  //         <div className="">
-  //           <input
-  //             className="input"
-  //             type="text"
-  //             placeholder="Tu e-mail"
-  //             required
-  //             {...email}
-  //           />
-  //         </div>
-  //       </div>
-  //       <div className="">
-  //         <label className="">DNI</label>
-  //         <div className="">
-  //           <input
-  //             className="input"
-  //             type="text"
-  //             placeholder="Tu dni"
-  //             required
-  //             {...dni}
-  //           />
-  //         </div>
-  //       </div>
-  //       <div className="">
-  //         <label className="">Domicilio</label>
-  //         <div className="">
-  //           <input
-  //             className="input"
-  //             type="text"
-  //             placeholder="Tu dirección"
-  //             required
-  //             {...address}
-  //           />
-  //         </div>
-  //       </div>
-  //       <div className="">
-  //         <label className="">Password</label>
-  //         <p className="">
-  //           <input
-  //             className="input"
-  //             type="password"
-  //             placeholder="Password"
-  //             required
-  //             {...password}
-  //           />
-  //           <span className="">
-  //             <i className=""></i>
-  //           </span>
-  //         </p>
-  //       </div>
-  //       <div className="">
-  //         <p className="">
-  //           <button className="">Sign In</button>
-  //         </p>
-  //       </div>
-  //     </form>
-  //   </div>
-  // );
 };
 
 export default Signup;
