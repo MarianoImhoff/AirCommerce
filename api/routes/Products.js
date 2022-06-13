@@ -18,12 +18,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-/* router.get("/:id",(req,res)=>{
+router.get("/:id",(req,res)=>{
     const {id} = req.params
     Products.findOne({where:{id}})
     .then(products => res.status(200).send(products))
     .catch(error => console.log(error))
-  }); */
+
+});
+
+  }); 
+/*
   router.get('/:id', async (req, res) => {
     try {
       const {id} = req.params
@@ -32,7 +36,8 @@ router.get('/', async (req, res) => {
     } catch (error) {
       res.status(400).send(error);
     }
-  });
+  });*/
+
 
 router.get('/:search', async (req, res) => {
   try {
