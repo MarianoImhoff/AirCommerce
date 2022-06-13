@@ -21,6 +21,7 @@
     .shoesGrid {
         grid-template-columns: 100%;
     }
+<<<<<<< HEAD
 }
 
 /* Dropdown Button */
@@ -64,3 +65,6 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+=======
+}
+>>>>>>> cdf4317d6c0db2bba0bc3b6a559baf6d58b1c075
