@@ -14,7 +14,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
-  console.log(user);
+
 const navigate = useNavigate()
   const handleLogout = () => {
     console.log('TRYING LOGOUT...');
