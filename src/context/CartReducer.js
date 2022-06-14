@@ -1,11 +1,19 @@
 export const initialState = {
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
 };
 
 export const actionTypes = {
   ADD_TO_CART: 'ADD_TO_CART',
   REMOVE_ITEM: 'REMOVE_ITEM',
   CHANGE_QUANTITY: 'CHANGE_QUANTITY',
+};
+
+export const getTotal = (cart) => {
+  return cart.reduce(
+    (accumulated, currentItem) =>
+      accumulated + Number(currentItem.price) * Number(currentItem.quantity),
+    0
+  );
 };
 
 const reducer = (state, action) => {
