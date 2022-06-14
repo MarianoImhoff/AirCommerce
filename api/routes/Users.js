@@ -60,9 +60,14 @@ router.put('/edit', async (req, res) => {
 
 //Mostrar al usuario Logeado ( Actualizar con LocalStorage )
 
-router.get('/me', (req, res) => {
-  res.send(req.user);
-});
+router.get('/:id', async (req, res) => {
+ try{
+const users = await Users.findOne({where: {id: req.params.id}})
+ res.send(users);
+ } catch (error) {
+  console.log(error);
+ }
+})
 
 //Logout
 

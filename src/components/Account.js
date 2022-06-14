@@ -7,6 +7,7 @@ const Account = () => {
             <div className='sidebarContainer'>
             <Sidebar />
             </div>
+            
 
         </div>
     )

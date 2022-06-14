@@ -21,8 +21,6 @@ const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
       id: shoe.id,
     });
 
-  console.log("CANTIDAD ", shoe.quantity);
-
   return (
     <div className={s.productCard} key={shoe.barcode}>
       <div className={s.imageContainer}>

@@ -22,6 +22,7 @@ router.get('/pending', AuthAdmin, (req, res) => {
 //Ruta para actualizar el estado de la orden
 //Nuevo_estado hace referencia al input que enviara el Front
 
+
 router.put('/pendings/:id', AuthAdmin, async (req, res) => {
   let compra = await DetailBuy.findByPk(req.params.id);
   await compra.update(

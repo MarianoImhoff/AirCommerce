@@ -1,5 +1,4 @@
 
-
 import { Container, Navbar, Button } from 'react-bootstrap';
 
 import React, { useContext } from 'react';
@@ -11,21 +10,30 @@ import axios from 'axios';
 import logo from '../utils/img/Logo.jpg';
 import Search from './Search';
 import { AuthContext } from '../context/AuthContext';
+import { useCartValue } from '../context/CartContext';
 
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
+  const [{ cart }] = useCartValue();
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
+
   const handleLogout = () => {
-    console.log('TRYING LOGOUT...');
     axios
       .post('/users/logout')
+      .then(() => {
+        axios.put('/orders/save', {
+          userNumber: JSON.parse(localStorage.user).id,
+          products_buy: JSON.stringify(cart),
+        })
+      })
       .then((res) => {
-        console.log(res);
-        localStorage.removeItem("user")
+        cart.splice(0, cart.length);
+        localStorage.removeItem('user');
+        localStorage.removeItem('cart');
         toggleAuth(null);
         console.log('LOGOUT DONE');
-        navigate("/")
+        navigate('/');
       })
       .catch((err) => console.log('ERROR: ', err));
   };
@@ -33,7 +41,15 @@ const navigate = useNavigate()
   return (
     <Navbar bg="dark" expand="md">
       <Container fluid>
-        <Link style={{display:"flex", paddingLeft:"13px", textDecoration:'none',alignItems:"center" }} to="/">
+        <Link
+          style={{
+            display: 'flex',
+            paddingLeft: '13px',
+            textDecoration: 'none',
+            alignItems: 'center',
+          }}
+          to="/"
+        >
           <img
             src={logo}
             width="80"
@@ -41,9 +57,18 @@ const navigate = useNavigate()
             style={{ borderRadius: '5px' }}
             alt="logo"
           />
-          <h1 style={{display:"flex", color:"white", marginLeft:"10px", marginTop:"15px"}}>AirCommerce</h1>
+          <h1
+            style={{
+              display: 'flex',
+              color: 'white',
+              marginLeft: '10px',
+              marginTop: '15px',
+            }}
+          >
+            AirCommerce
+          </h1>
         </Link>
-        <Link  to="/Store">
+        <Link to="/Store">
           <Button variant="outline-success">Tienda</Button>
         </Link>
 
@@ -51,20 +76,18 @@ const navigate = useNavigate()
 
         {user ? (
           <>
-          <Button onClick={handleLogout} variant="outline-success">
-            Logout
-          </Button>
-          <Link to= {`/account/${user}`}>
-          <Button variant="outline-success">{user}</Button>
-        </Link>
-        </>
-        ) : (  
+            <Button onClick={handleLogout} variant="outline-success">
+              Logout
+            </Button>
+            <Link to={`/account/${user}`}>
+              <Button variant="outline-success">{user}</Button>
+            </Link>
+          </>
+        ) : (
           <Link to="/Login">
             <Button variant="outline-success">Login</Button>
           </Link>
         )}
-
-
 
         <Link to="/Cart">
           <Button variant="outline-success">

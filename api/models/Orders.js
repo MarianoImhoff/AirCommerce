@@ -6,14 +6,17 @@ class Orders extends S.Model{}
 Orders.init({   
 orderNumber:{
     type: S.INTEGER,
+    defaultValue: null,
 },
 products_buy:{
-    type: S.ARRAY(S.JSON),
-    allowNull: false,
+    type: S.TEXT,
+    defaultValue: '',
+    // allowNull: false,
   },
 price_final:{
     type: S.INTEGER,
-    allowNull: false,
+    defaultValue: 0,
+    // allowNull: false,
   },
 userNumber:{
     type:S.INTEGER,
@@ -33,7 +36,7 @@ modelName: "orders"
 })
 
 //hook provisorio, hasta obtener datos del front
-Orders.addHook("beforeValidate",(orders)=>{
-    if(fullfilled){return (orders.orderNumber = Math.floor(Math.random()*10000));}
-})
+// Orders.addHook("beforeValidate",(orders)=>{
+//     if(fullfilled){return (orders.orderNumber = Math.floor(Math.random()*10000));}
+// })
 module.exports = Orders
