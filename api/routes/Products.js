@@ -31,15 +31,25 @@ router.get('/:search', async (req, res) => {
 router.get('/sortBy/:type/:search', async (req, res) => {
   try {
     let sort = req.params.type;
+    sort = sort.slice(1)
     let search = req.params.search;
     search = search.toLowerCase();
+    if(req.params.type.includes("+")){
     const sortProduct = await Products.findAll({
       where: {
         [Op.or]: [{ brand: search }, { model: search }, { color: search }],
       },
       order: [sort],
     });
-    res.status(200).send(sortProduct);
+    res.status(200).send(sortProduct)}
+    if(req.params.type.includes("-")){
+    const sortProduct = await Products.findAll({
+      where: {
+        [Op.or]: [{ brand: search }, { model: search }, { color: search }],
+      },
+      order: [[sort,'DESC']],
+    });
+    res.status(200).send(sortProduct)}
   } catch (error) {
     console.log(error);
   }
@@ -48,10 +58,19 @@ router.get('/sortBy/:type/:search', async (req, res) => {
 router.get('/sortBy/:type', async (req, res) => {
   try {
     let sort = req.params.type;
-    const sortProduct = await Products.findAll({
-      order: [sort],
-    });
-    res.status(200).send(sortProduct);
+    sort = sort.slice(1)
+    if(req.params.type.includes("+")){
+      const sortProduct = await Products.findAll({
+        order: [sort],
+      });
+      res.status(200).send(sortProduct);
+    }
+    if(req.params.type.includes("-")){
+      const sortProduct = await Products.findAll({
+        order: [[sort,'DESC']],
+      });
+      res.status(200).send(sortProduct);
+    }
   } catch (error) {
     console.log(error);
   }

@@ -3,14 +3,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { ImSearch } from 'react-icons/im';
 import useInput from '../hooks/useInput';
-
+import { Button, Container, Table } from 'react-bootstrap'
+import { useNavigate } from 'react-router';
 const SuperAdmin = () => {
   const userStorage = JSON.parse(localStorage.getItem('user'));
   const [users, setUsers] = useState([]);
-  const [searchUser, setSearchUser] = useState({});
   const input = useInput();
-
+    const navigate = useNavigate()
   const handleRol = async (userId, userAdmin) => {
+    
     try {
       userAdmin
         ? await axios.put(
@@ -19,45 +20,39 @@ const SuperAdmin = () => {
         : await axios.put(
             `http://localhost:8080/api/admin/giveRol/${userStorage.id}/${userId}`
           );
-      /* const users = await axios.get(`http://localhost:8080/api/admin/${userStorage.id}`)
-        setSearchUser(users.data) */
-      reload();
+      const users = await axios.get(`http://localhost:8080/api/admin/${userStorage.id}`)
+      setUsers(users.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const user = await axios.get(
-        `http://localhost:8080/api/admin/users/${userStorage.id}/${input.value}`
-      );
-      setUsers(user.data);
-    } catch (error) {
-      console.log(error);
-    }
+    navigate(`/SuperAdmin/users/${input.value}`)
+   
   };
 
   const reload = () => {
-    axios
-      .get(`http://localhost:8080/api/admin/${userStorage.id}`)
-      .then((users) => setUsers(users.data));
+    
   };
 
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/admin/${userStorage.id}`)
-      .then((users) => setUsers(users.data));
+   .then((users) => setUsers(users.data));
+   
   }, []);
 
-  return (
-    <div>
-      <form className="searchContainer" onSubmit={handleSubmit}>
-        <div class="searchBox">
+  return ( 
+<div>
+      <Container>
+        
+        <div onSubmit={handleSubmit}>
+        <form >
+        <div className="searchBox">
           <input
             type="search"
-            placeholder="Search"
+            placeholder="Search User By DNI"
             className="searchInput"
             aria-label="Search"
             {...input}
@@ -67,28 +62,49 @@ const SuperAdmin = () => {
           </button>
         </div>
       </form>
+      </div>
+        <Table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>E-mail</th>
+              <th>DNI</th>
+              <th>Address</th>
+              <th>Admin</th>
 
-      {users.map((user, index) => {
-        return (
-          <ul key={index}>
-            <li>Name: {user.name}</li>
-            <li>Surname: {user.surname}</li>
-            <li>Email: {user.email}</li>
-            <li>Address: {user.address}</li>
-            <li>DNI: {user.dni}</li>
-            <li>isAdmin: {user.isAdmin ? 'Yes' : 'No'}</li>
-            <button
-              onClick={() => {
-                handleRol(user.id, user.isAdmin);
-              }}
-            >
-              {user.isAdmin ? 'Take Rol Admin' : 'Give Rol Admin'}
-            </button>
-          </ul>
-        );
-      })}
+            </tr>
+          </thead>
+          {users.map((user, index) => {
+            return (
+          <tbody key={index}>
+            {
+                <tr>
+                  <td>{user.name}</td>
+                  <td>{user.surname}</td>
+                  <td>{user.email}</td>
+                  <td>{user.dni}</td>
+                  <td>{user.address}</td>
+                  <td>{(user.isAdmin)? "Yes" : "No"}</td>
+                  <td><button onClick={() => {handleRol(user.id, user.isAdmin)}}>{user.isAdmin ? 'Take Rol Admin' : 'Give Rol Admin'}</button></td>
+                </tr>
+
+            }
+
+          </tbody>
+            )})}
+        </Table>
+
+      </Container>
+
     </div>
-  );
+
+  )
+    
 };
+
+
+    
+  
 
 export default SuperAdmin;

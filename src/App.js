@@ -18,6 +18,7 @@ import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView"
 import ProfileEdit from "./commons/ProfileEdit";
 import NewProduct from "./components/NewProduct"
+import UserSingleView from "./components/UserSingleView"
 import ProductAdminView from "./components/ProductAdminView";
 import AdminView from "./components/AdminView";
 
@@ -45,6 +46,9 @@ export default function App() {
                 <Route exact path='/SuperAdmin/users' element={<SuperAdmin />} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />
+
+                <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView />} />
+
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
                 <Route path='/history' element={<History />} /> 
@@ -58,6 +62,7 @@ export default function App() {
                 <Route exact path='/update_product/single/:id' element={<AdminView />}/>
                 <Route exact path='/create_product' element={<AdminView />}/>
                 
+
 
                {/*  
                 <Route exact path="/users" element={<Users />} /> */}
