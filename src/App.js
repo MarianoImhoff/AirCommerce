@@ -17,7 +17,7 @@ import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView"
 import ProfileEdit from "./commons/ProfileEdit";
-import NewProduct from "./components/NewProduct"
+// import NewProduct from "./components/NewProduct"
 import UserSingleView from "./components/UserSingleView"
 import ProductAdminView from "./components/ProductAdminView";
 import AdminView from "./components/AdminView";

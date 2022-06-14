@@ -50,7 +50,7 @@ Users.init(
 
 Users.addHook('beforeCreate', (user) => {
   return bcrypt
-    .genSalt(16)
+    .genSalt(5)
     .then((salt) => {
       user.salt = salt;
       return user.setHash(user.password, user.salt);
