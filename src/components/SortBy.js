@@ -16,9 +16,7 @@ const SortBy = () => {
 
   const handleSort = async (type) => {
       navigate(`/Store/sortBy/${type}`)
-    
    };
-
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/products/sortBy/${type}`)
@@ -30,32 +28,29 @@ const SortBy = () => {
   return (
     <div>
     <h1>Store</h1>
-    <div className={s.sortButtonContainer}>
-    <button onClick={() => {
-                  handleSort('brand');
-                }}
-              >
-                Brand
-              </button>
-              <button onClick={() => {
-                  handleSort('size')
-                }}>
-                
-              
-                Size
-              </button>
-              <button
-                onClick={() => {
-                  handleSort('price')
-                }}
-              >
-                Price
-              </button>
-              </div>
-          <ul className={s.shoesGrid}>
-            {sort.map((shoe) => (
-              <ShoesCard shoe={shoe} />
-            ))}
+    <div className={s.dropdown} key={'SortB'}>
+    <button className={s.dropbtn}>Brand</button>
+    <div className={s.dropdownContent}>
+    <a  onClick={() => {handleSort('+brand')}}><p>A-Z</p></a>
+    <a  onClick={() => {handleSort('-brand')}}><p>Z-A</p></a>
+    </div>
+    </div>
+    
+    <div className={s.dropdown} key={'SortP'}>
+    <button className={s.dropbtn}>Price</button>
+    <div className={s.dropdownContent}>
+    <a  onClick={() => {handleSort('+price')}}><p>Lower-Higher</p></a>
+    <a  onClick={() => {handleSort('-price')}}><p>Higher-Lower</p></a>
+    </div>
+    </div>
+    <div className={s.dropdown} key={'SortS'}>
+    <button className={s.dropbtn}>Size</button>
+    <div className={s.dropdownContent}>
+    <a  onClick={() => {handleSort('+size')}}><p>Lower-Higher</p></a>
+    <a  onClick={() => {handleSort('-size')}}><p>Higher-Lower</p></a>
+    </div>
+    </div>
+    <ul className={s.shoesGrid}>{sort.map((shoe) => (<ShoesCard shoe={shoe} />))}
           </ul>
           <button>Next</button>
         </div>
@@ -63,3 +58,6 @@ const SortBy = () => {
 };
 
 export default SortBy;
+
+
+

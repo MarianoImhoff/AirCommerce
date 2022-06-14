@@ -17,6 +17,7 @@ import Cart from "./components/Cart";
 /* import Checkout from "./components/Checkout"; */
 import ProductView from "./components/ProductView"
 import NewProduct from "./components/NewProduct"
+import UserSingleView from "./components/UserSingleView"
 
 
 
@@ -40,7 +41,7 @@ export default function App() {
                 <Route exact path='/SuperAdmin/users' element={<SuperAdmin/>} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />
-
+                <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView />} />
                {/*  
                 <Route exact path="/users" element={<Users />} /> */}
                {/*  <Route exact path="/profile" element={<Profile />} />

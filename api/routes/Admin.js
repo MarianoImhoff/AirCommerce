@@ -27,8 +27,7 @@ router.put('/takeRol/:id/:userId', AuthAdmin, async (req, res) => {
 router.get('/users/:id/:dni', AuthAdmin, async (req, res) => {
   try{
     const dni = req.params.dni
-    const users = await Users.findOne({where: {dni} });
-    console.log(users.dataValues)
+    const users = await Users.findOne({where: {dni}});
     res.status(200).send(users.dataValues);
   }catch(error){console.log(error)}
 });
@@ -37,7 +36,7 @@ router.get('/:id', AuthAdmin, async (req, res) => {
   try{
     const users = await Users.findAll({
       // OP.NOT FUNCIONA PARA NO MOSTRARSE A UNO MISMO EN LA DB
-      where: { id: { [Op.not]: req.params.id } },
+      where: { id: { [Op.not]: req.params.id } }, order: ["name"]
     });
     res.status(200).send(users)
   }catch(error){console.log(error)}
