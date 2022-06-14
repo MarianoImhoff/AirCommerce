@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Link } from 'react-router-dom';
-
 import * as FaIcons from "react-icons/fa"
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import s from "../styles/Sidebar.module.css"
+
 const Sidebar = () => {
 
   const { user } = useContext(AuthContext)

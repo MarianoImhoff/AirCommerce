@@ -1,5 +1,4 @@
 
-
 import { Container, Navbar, Button } from 'react-bootstrap';
 
 import React, { useContext } from 'react';
@@ -14,7 +13,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
-  console.log(user);
+  
 const navigate = useNavigate()
   const handleLogout = () => {
     console.log('TRYING LOGOUT...');
