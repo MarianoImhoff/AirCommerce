@@ -21,9 +21,17 @@ const Signup = () => {
         password: values.password,
       })
       .then((user) => {
-        console.log(user);
-        navigate('/login');
+        console.log(user.data[0].id);
+        axios.post('/orders/add', {
+          orderNumber: null,
+          products_buy: [],
+          price_final: 0,
+          userNumber: user.data[0].id,
+          fullfilled: false,
+          rejected: false,
+        });
       })
+      .then((res) => navigate('/login'))
       .catch((err) => console.log(err));
   };
 
@@ -33,8 +41,7 @@ const Signup = () => {
     email: Yup.string()
       .email('El email ingresado no es válido')
       .required('Se requiere un email'),
-    dni: Yup.number()
-      .required('Se requiere su número de DNI'),
+    dni: Yup.number().required('Se requiere su número de DNI'),
     address: Yup.string().required('Se requiere un domicilio'),
     password: Yup.string()
       .min(6, 'La contraseña debe tener al menos 6 caracteres')

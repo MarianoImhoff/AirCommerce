@@ -65,7 +65,7 @@ const Sidebar = () => {
                 <ul>
                   <li>
 
-                <Link to="/users">
+                <Link to="/SuperAdmin/users">
                 <FaIcons.FaUserTie/> Manage users
                 </Link>
                   </li>

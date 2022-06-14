@@ -4,12 +4,12 @@ import { useNavigate } from "react-router";
 import styles from "../styles/Search.css"
 import { ImSearch } from 'react-icons/im';
 
-const Search = () => {
+const SearchAdmin = () => {
     const [searchText, setSearchText] = useState("");
     const navigate = useNavigate()
-
+   
     const handleSubmit = () => {
-        navigate(`/Store/${searchText}`)
+        navigate(`/update_product/${searchText}`)
     };
 
     const handleChange = (e) => {
@@ -34,4 +34,4 @@ const Search = () => {
     );
 }
 
-export default Search;
+export default SearchAdmin;

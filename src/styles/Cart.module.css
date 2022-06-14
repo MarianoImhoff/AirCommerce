@@ -55,3 +55,9 @@
   margin: 20px 50px;
   text-align: center;
 }
+
+.paragraph {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}

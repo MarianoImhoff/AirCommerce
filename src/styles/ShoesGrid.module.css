@@ -24,6 +24,11 @@
 }
 
 /* Dropdown Button */
+
+.sortButtonContainer{
+  display: flex;
+  justify-content: space-around;
+}
 .dropbtn {
     background-color: #04AA6D;
     color: white;

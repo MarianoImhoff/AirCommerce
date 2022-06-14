@@ -32,6 +32,11 @@
   margin: 0;
 }
 
+.details > ul > li {
+  margin-bottom: 2px;
+}
+
+
 .details > label {
   padding: 25px;
   line-height: 1.5em;

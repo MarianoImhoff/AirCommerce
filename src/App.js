@@ -17,7 +17,11 @@ import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView"
 import ProfileEdit from "./commons/ProfileEdit";
-//import NewProduct from "./components/NewProduct"
+import NewProduct from "./components/NewProduct"
+import ProductAdminView from "./components/ProductAdminView";
+import AdminView from "./components/AdminView";
+
+
 
 
 
@@ -45,11 +49,23 @@ export default function App() {
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
                 <Route path='/history' element={<History />} /> 
                 {/*  
-                <Route exact path="/users" element={<Users />} /> */}
-                  
+                <Route exact path="/users" element={<Users />} /> */}             
                  <Route exact path="/checkout" element={<Checkout />} /> 
                 {/* <Route exact path="/new_product" element={<NewProduct />} />
                 <Route path='/update_product/:id' element={<NewProduct />} /> */}
+                <Route exact path='/update_product' element={<ProductAdminView />}/>
+                <Route exact path='/update_product/:search' element={<ProductAdminView />}/>
+                <Route exact path='/update_product/single/:id' element={<AdminView />}/>
+                <Route exact path='/create_product' element={<AdminView />}/>
+                
+
+               {/*  
+                <Route exact path="/users" element={<Users />} /> */}
+               {/*  <Route exact path="/profile" element={<Profile />} />
+                <Route path='/history' element={<History />} /> */}
+                {/* <Route exact path="/checkout" element={<Checkout />} /> */}
+
+
             </Routes>
         </>
 

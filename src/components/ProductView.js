@@ -5,7 +5,6 @@ import Carousel from "../commons/Carousel";
 import s from "../styles/ProductView.module.css";
 import ClientView from './ClientView.js';
 
-
 const ProductView = () => {
     let id = useLocation().pathname.slice(1);
     const [shoes, setShoes] = useState({});

@@ -52,7 +52,7 @@ const LogIn = () => {
     >
       {(formik) => (
         <div className="container w-75 mt-4">
-          <h3>Sign Up</h3>
+          <h3>Login</h3>
           <Form>
             <div className="form-group">
               <label htmlFor="email">E-mail</label>
@@ -93,8 +93,8 @@ const LogIn = () => {
             </div>
           </Form>
           <p className="mt-4">
-            Don't have an accout?&nbsp;
-            <Link to="/signup">Sign up</Link>
+            No tenés una cuenta en AirCommerce?&nbsp;
+            <Link to="/signup">Te invitamos a registrarte.</Link>
           </p>
           <p>
             <a href="http://localhost:8080/api/users/auth/google">

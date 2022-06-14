@@ -11,8 +11,7 @@ const Auth = (req, res, next) => {
 
 const AuthAdmin = (req, res, next) => {
   Users.findOne({ where: { id: req.params.id } }).then((admin) => {
-    console.log(admin.dataValues.superAdmin);
-    if (admin.dataValues.superAdmin !== 'true')
+    if (!admin.dataValues.superAdmin)
       return res
         .status(401)
         .send('Unauthorized, No tenes los permisos necesarios ');
