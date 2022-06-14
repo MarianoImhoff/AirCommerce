@@ -9,14 +9,12 @@ const Search = () => {
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-       
         navigate(`/Store/${searchText}`)
     };
 
     const handleChange = (e) => {
         setSearchText(e.target.value)
     };
-
 
     return (
         <>

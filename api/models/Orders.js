@@ -3,16 +3,28 @@ const db = require("../db")
 
 class Orders extends S.Model{}
 
-Orders.init({
-    
+Orders.init({   
 orderNumber:{
-    type: S.INTEGER
+    type: S.INTEGER,
 },
+products_buy:{
+    type: S.ARRAY(S.JSON),
+    allowNull: false,
+  },
+price_final:{
+    type: S.INTEGER,
+    allowNull: false,
+  },
 userNumber:{
-    type:S.INTEGER
+    type:S.INTEGER,
 },
-productNumber:{
-    type:S.INTEGER
+fullfilled:{
+    type: S.BOOLEAN,
+    defaultValue: false,
+},
+rejected:{
+    type: S.BOOLEAN,
+    defaultValue: false,
 },
 
 },{
@@ -22,7 +34,6 @@ modelName: "orders"
 
 //hook provisorio, hasta obtener datos del front
 Orders.addHook("beforeValidate",(orders)=>{
-    return (orders.orderNumber = Math.floor(Math.random()*10000));
-    
+    if(fullfilled){return (orders.orderNumber = Math.floor(Math.random()*10000));}
 })
 module.exports = Orders
