@@ -32,7 +32,7 @@ const Checkout = () => {
                 orderNumber: null,
                 products_buy: [],
                 price_final: 0,
-                userNumber: user.data[0].id,
+                //userNumber: user.data[0].id,
                 fullfilled: false,
                 rejected: false,
             });
