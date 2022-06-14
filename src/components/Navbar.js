@@ -1,3 +1,4 @@
+
 import { Container, Navbar, Button } from 'react-bootstrap';
 
 import React, { useContext } from 'react';
@@ -14,8 +15,8 @@ import { useCartValue } from '../context/CartContext';
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
   const [{ cart }] = useCartValue();
-
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     axios
