@@ -3,6 +3,20 @@ const { Op } = require('sequelize');
 const router = express.Router();
 const { Users, Products, Orders, Reviews } = require('../models');
 const { findOne } = require('../models/Users');
+const multer  = require('multer');
+const fs = require('fs');
+
+//This code allows you to save a file, which was sent via frontend form, on the server
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'src/utils/img')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
+const upload = multer({ storage: storage })
 
 
 router.get('/', async (req, res) => {
@@ -87,11 +101,11 @@ router.get('/single/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('photo'), async (req, res) => {
   try {
-    const product = await Products.create(req.body);
+    const product = await Products.create(JSON.parse(JSON.stringify(req.body)));
+    console.log("REQ.FILE IMAGE:-----------------------------", req.file.path)
     
-    console.log(req.body)
     res.status(201).send(product);
   } catch (error) {
     res.status(400).send(error);

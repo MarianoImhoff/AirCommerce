@@ -66,7 +66,7 @@ const Store = () => {
     </div>
           <ul className={s.shoesGrid}>
             {store.map((shoe) => (
-              <ShoesCard shoe={shoe} />
+              <ShoesCard key={shoe.id} shoe={shoe} />
             ))}
           </ul>
           <button>Next</button>

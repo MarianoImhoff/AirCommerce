@@ -1,10 +1,11 @@
 import React from 'react';
-
+import find from '../utils/functions/findFunction';
 import ShoesCard from './ShoesCard';
 import s from '../styles/ShoesGrid.module.css';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import SearchAdmin from './SearchAdmin';
 
 const Grid = () => {
   const [shoeSearch, setShoeSearch] = useState([]);
@@ -17,11 +18,11 @@ const Grid = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/products/${search}`)
-      .then((info) => setShoeSearch(info.data));
-  }, []);
-  console.log(shoeSearch)
+    find(`/products/${search}`)
+    .then(shoes => setShoeSearch(shoes))
+    .catch(err => console.log(err));
+  }, [search]);
+
 
   return (
     <div>
@@ -51,7 +52,7 @@ const Grid = () => {
 
       <ul className={s.shoesGrid}>
         {shoeSearch.map((shoe) => (
-          <ShoesCard shoe={shoe} />
+          <ShoesCard key={shoe.id} shoe={shoe} />
         ))}
       </ul>
       <button>Next</button>
