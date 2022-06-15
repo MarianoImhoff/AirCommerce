@@ -9,12 +9,45 @@ import { checkOut } from '../hooks/Alerts'
 import { useCartValue } from '../context/CartContext';
 
 const Checkout = () => {
-  const navigate = new useNavigate();
-  const [{ cart }] = useCartValue();
-  const userStorage = JSON.parse(localStorage.getItem('user'));
-  const [checkoutInput, setCheckoutInput] = useState({});
-  const cartStorage = JSON.parse(localStorage.getItem('cart'));
-  console.log(cartStorage);
+
+    const navigate = new useNavigate();
+    const userStorage = JSON.parse(localStorage.getItem("user"));
+    const [checkoutInput, setCheckoutInput] = useState({});
+    const cartStorage = JSON.parse(localStorage.getItem("cart"));
+
+
+    const handleCheckout = async (e) => {
+        e.preventDefault()
+        try {
+            console.log("ya wei");
+            const cartProduct = await
+                axios
+                    .put("/orders/save", {
+                        products_buy: cartStorage,
+                        userNumber: userStorage.id,
+                    })
+            const checkout = await
+                axios
+                    .put('/orders/checkout', {
+                        userNumber: JSON.parse(localStorage.user).id,
+                    })
+            console.log(checkout);
+            const newOrder = await
+                axios
+                    .post('/orders/add', {
+                        orderNumber: null,
+                        products_buy: [],
+                        price_final: 0,
+                        userNumber: JSON.parse(localStorage.user).id,
+                        fullfilled: false,
+                        rejected: false,
+                    })
+
+                    setCheckoutInput(checkout);
+            navigate('/history');
+        }
+        catch (err) { console.log(err) };
+
 
   const handleCheckout = async (e) => {
     e.preventDefault();
