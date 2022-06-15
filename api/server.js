@@ -59,8 +59,7 @@ const authUser = async (request, accessToken, refreshToken, profile, done) => {
   return done(null, profile);
 };
 
-GOOGLE_CLIENT_ID =
-  '714031971248-tujqisu7g2u6lh1mlcupafnldjeoml31.apps.googleusercontent.com';
+GOOGLE_CLIENT_ID ='714031971248-tujqisu7g2u6lh1mlcupafnldjeoml31.apps.googleusercontent.com';
 GOOGLE_CLIENT_SECRET = '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';
 
 passport.use(
@@ -86,7 +85,7 @@ passport.deserializeUser(function (id, done) {
 app.use('/api', routes);
 app.use('/', (req, res, next) => res.redirect('/api'));
 
-db.sync({ force:false })
+db.sync({ force: false })
   .then(() => {
     app.listen(PORT, (req, res, next) => {
       console.log(`AirCommerce on port ${PORT}`);

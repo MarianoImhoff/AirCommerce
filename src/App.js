@@ -21,6 +21,7 @@ import ProfileEdit from "./commons/ProfileEdit";
 import UserSingleView from "./components/UserSingleView"
 import ProductAdminView from "./components/ProductAdminView";
 import AdminView from "./components/AdminView";
+import UserOrders from "./components/UserOrders"
 
 
 
@@ -48,7 +49,7 @@ export default function App() {
                 <Route exact path="/:id" element={<ProductView />} />
 
                 <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView />} />
-
+                <Route exact path="/user_orders" element={<UserOrders />} />
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
                 <Route path='/history' element={<History />} /> 

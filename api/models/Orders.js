@@ -5,18 +5,17 @@ class Orders extends S.Model{}
 
 Orders.init({   
 orderNumber:{
-    type: S.INTEGER,
+    type: S.STRING,
     defaultValue: null,
 },
-products_buy:{
+ products_buy:{
     type: S.ARRAY(S.JSON),
     defaultValue: [],
-    // allowNull: false,
-  },
+  }, 
 price_final:{
     type: S.INTEGER,
     defaultValue: 0,
-    // allowNull: false,
+    
   },
 userNumber:{
     type:S.INTEGER,
@@ -35,8 +34,15 @@ sequelize: db,
 modelName: "orders"
 })
 
-//hook provisorio, hasta obtener datos del front
-// Orders.addHook("beforeValidate",(orders)=>{
-//     if(fullfilled){return (orders.orderNumber = Math.floor(Math.random()*10000));}
-// })
+
+ Orders.addHook("afterValidate",(order)=>{
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    order.orderNumber = `${order.userNumber}.${day}.${month}.${year}` 
+    
+    
+    
+ })
 module.exports = Orders
