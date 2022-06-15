@@ -24,9 +24,11 @@ router.get('/load/:id', (req, res) => {
 // RUTA PARA SALVAR CARRITO EN DB CUANDO EL USUARIO HACE LOGOUT
 
 router.put('/save', (req, res) => {
+  console.log(req.body);
   Orders.update(
     {
       products_buy: req.body.products_buy,
+      userNumber: req.body.userNumber
     },
     {
       where: {
@@ -37,7 +39,7 @@ router.put('/save', (req, res) => {
   )
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      res.status(500).send(err);
+      console.log(err);
     });
 });
 

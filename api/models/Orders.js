@@ -9,8 +9,8 @@ orderNumber:{
     defaultValue: null,
 },
 products_buy:{
-    type: S.TEXT,
-    defaultValue: '',
+    type: S.ARRAY(S.JSON),
+    defaultValue: [],
     // allowNull: false,
   },
 price_final:{
