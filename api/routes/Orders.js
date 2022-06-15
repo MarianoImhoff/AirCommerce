@@ -25,30 +25,28 @@ router.get('/load/:id', (req, res) => {
 router.get('/purchase/:id', async (req, res) => {
   try {
     const id = req.params.id;
-  const orders = [];
+    const newOrders = [];
     const order = await Orders.findAll({
       where: {
         userNumber: id,
-        fullfilled: true
-
+        fullfilled: true,
       },
-    })
+      order: ['createdAt'],
+    });
+    order.forEach((or) =>
+      or.dataValues.products_buy.forEach((o) => newOrders.push(o))
+    );
+    console.log(newOrders);
 
-order.forEach(or => orders.push(or.dataValues.products_buy));
-console.log(order[0].orders);
-
-    res.status(200).send(orders);
-  
- }
-    catch (err) {
-  res.status(500).send(err);
-};
+    res.status(200).send(newOrders);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // RUTA PARA SALVAR CARRITO EN DB CUANDO EL USUARIO HACE LOGOUT
 
 router.put('/save', (req, res) => {
- 
   Orders.update(
     {
       products_buy: req.body.products_buy,
@@ -83,36 +81,18 @@ router.put('/checkout', (req, res) => {
       },
     }
   )
-
     .then(() => res.sendStatus(200))
 
-    .catch(error => console.log(error))
-
+    .catch((error) => console.log(error));
 });
-
-/*  router.put("/add",(req,res)=>{
-    const {productId, userId} = req.body
-    Products.findOne({where:{productId}})
-    .then(products =>{
-        Products.create(req.body)
-        .then(newProduct=>{
-            Users.findByPk(userId)
-            .then(user => newProduct.addUser(user))
-            .then(()=> res.sendStatus(200))
-            .catch(error => console.log(error))
-        })
-    })
-});  */
 
 // RUTA PARA CREAR NUEVA ORDEN VACÍA CUANDO SE REGISTRA NUEVO USUARIO O CUANDO SE HACE CHECKOUT DE CARRITO
 
 router.post('/add', (req, res) => {
-  console.log('CREANDO NUEVA ORDEN...', req.body);
   Orders.create({
     userNumber: req.body.userNumber,
   })
     .then((newOrder) => {
-      console.log(newOrder);
       res.status(201).send(newOrder);
     })
     .catch((error) => console.log(error));
@@ -147,11 +127,9 @@ router.post('/add', (req, res) => {
 
 router.delete('/remove', async (req, res) => {
   try {
-    // falta recibir el userId del front, desde el local storage
     const productId = req.body.id;
-    /* const userId = req.body.id */
     await Orders.destroy({
-      where: { productNumber: productId /* , userNumber:userId */ },
+      where: { productNumber: productId  },
     });
     res.sendStatus(200);
   } catch (error) {
