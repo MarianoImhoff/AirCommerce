@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
+import { errorLogin } from '../hooks/Alerts'
 
 import useInput from '../hooks/useInput';
 
@@ -21,13 +22,11 @@ const LogIn = () => {
         password: values.password,
       })
       .then((user) => {
-        console.log('USUARIO LOGUEADO');
-        console.log(user.data);
         localStorage.setItem('user', JSON.stringify(user.data));
         toggleAuth(user.data.name);
       })
       .then(() => navigate('/Store'))
-      .catch((err) => console.log('ERROR: ', err));
+      .catch(() =>errorLogin() );
   };
 
   const validate = Yup.object({

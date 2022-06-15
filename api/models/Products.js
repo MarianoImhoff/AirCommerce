@@ -17,7 +17,6 @@ Products.init(
       type: S.STRING,
       allowNull: false,
     },
-    //ver si dejamos esta categoria
     color: {
       type: S.STRING,
       allowNull: false,

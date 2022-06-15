@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import s from '../styles/ProductCard.module.css';
 import { useCartValue } from '../context/CartContext';
 import { actionTypes } from '../context/CartReducer';
+import Swal from 'sweetalert2'
 
 const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
   const [{ cart }, dispatch] = useCartValue();
@@ -15,11 +16,28 @@ const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
       newQuantity: Number(event.target.value),
     });
 
-  const removeItem = () =>
-    dispatch({
-      type: actionTypes.REMOVE_ITEM,
-      id: shoe.id,
-    });
+  const removeItem = () =>{
+    Swal.fire({
+      title: "Delete Porduct",
+      text: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({
+          type: actionTypes.REMOVE_ITEM,
+          id: shoe.id,
+        });
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })}
 
   return (
     <div className={s.productCard} key={shoe.barcode}>

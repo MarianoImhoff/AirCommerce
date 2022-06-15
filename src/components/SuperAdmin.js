@@ -5,11 +5,14 @@ import { ImSearch } from 'react-icons/im';
 import useInput from '../hooks/useInput';
 import { Button, Container, Table } from 'react-bootstrap'
 import { useNavigate } from 'react-router';
+import { success } from '../hooks/Alerts'
+
 const SuperAdmin = () => {
   const userStorage = JSON.parse(localStorage.getItem('user'));
   const [users, setUsers] = useState([]);
   const input = useInput();
     const navigate = useNavigate()
+
   const handleRol = async (userId, userAdmin) => {
     
     try {
@@ -20,6 +23,7 @@ const SuperAdmin = () => {
         : await axios.put(
             `http://localhost:8080/api/admin/giveRol/${userStorage.id}/${userId}`
           );
+          success()
       const users = await axios.get(`http://localhost:8080/api/admin/${userStorage.id}`)
       setUsers(users.data);
     } catch (error) {

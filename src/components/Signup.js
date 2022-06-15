@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
+import { registered, userExist } from '../hooks/Alerts'
+
 
 const Signup = () => {
   const navigate = new useNavigate();
@@ -21,6 +23,7 @@ const Signup = () => {
         password: values.password,
       })
       .then((user) => {
+        registered()
         console.log(user.data[0].id);
         axios.post('/orders/add', {
           orderNumber: null,
@@ -32,7 +35,7 @@ const Signup = () => {
         });
       })
       .then((res) => navigate('/login'))
-      .catch((err) => console.log(err));
+      .catch(() => { userExist() });
   };
 
   const validate = Yup.object({
