@@ -29,7 +29,7 @@ const LogIn = () => {
         axios
           .get(`/orders/load/${user.data.id}`)
           .then((order) => {
-            const savedCart = JSON.parse(order.data.products_buy);
+            const savedCart = order.data.products_buy;
             console.log('SAVED CART: ', savedCart);
             console.log('UNSAVED CART: ', cart);
             savedCart.forEach((element) => cart.push(element));

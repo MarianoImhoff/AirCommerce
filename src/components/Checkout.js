@@ -6,9 +6,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { checkOut } from '../hooks/Alerts'
+import { useCartValue } from '../context/CartContext';
 
 const Checkout = () => {
   const navigate = new useNavigate();
+  const [{ cart }] = useCartValue();
   const userStorage = JSON.parse(localStorage.getItem('user'));
   const [checkoutInput, setCheckoutInput] = useState({});
   const cartStorage = JSON.parse(localStorage.getItem('cart'));
@@ -26,10 +28,12 @@ const Checkout = () => {
         orderNumber: null,
         products_buy: [],
         price_final: 0,
-        userNumber: JSON.parse(localStorage.user).id,
+        userNumber: userStorage.id,
         fullfilled: false,
         rejected: false,
       });
+      cart.splice(0, cart.length);
+      localStorage.removeItem('cart');
       checkOut()
       navigate('/history');
     } catch (err) {

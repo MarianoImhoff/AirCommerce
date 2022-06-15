@@ -11,7 +11,6 @@ orderNumber:{
  products_buy:{
     type: S.ARRAY(S.JSON),
     defaultValue: [],
-    
   }, 
 price_final:{
     type: S.INTEGER,

@@ -14,6 +14,8 @@ import { useCartValue } from '../context/CartContext';
 
 const NavBar = () => {
   const { user, toggleAuth } = useContext(AuthContext);
+  const userStorage = JSON.parse(localStorage.getItem('user'));
+  const cartStorage = JSON.parse(localStorage.getItem('cart'));
   const [{ cart }] = useCartValue();
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ const NavBar = () => {
       .then(() => {
         axios.put('/orders/save', {
           userNumber: JSON.parse(localStorage.user).id,
-          products_buy: JSON.stringify(cart),
+          products_buy: cartStorage,
         })
       })
       .then((res) => {
