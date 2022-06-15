@@ -44,7 +44,7 @@ const Sidebar = () => {
               <div>
                 <ul>
                   <li>
-                    <Link to="/new_product">
+                    <Link to="/create_product">
                     <FaIcons.FaStoreAlt/>  Create new product
                     </Link>
                   </li>

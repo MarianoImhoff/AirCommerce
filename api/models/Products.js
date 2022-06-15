@@ -28,11 +28,11 @@ Products.init(
     },
     url_path: {
       type: S.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     price: {
       type: S.DECIMAL,
-      allowNull: false,
+      
     },
     stock: {
       type: S.INTEGER,
@@ -41,5 +41,9 @@ Products.init(
   },
   { sequelize: db, modelName: 'products' }
 );
+
+Products.addHook('afterCreate', product => {
+  product.url_path = `/${product.id}.jpg`  
+})
 
 module.exports = Products;

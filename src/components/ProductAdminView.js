@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from "react-router";
 import find from '../utils/functions/findFunction';
-import create from '../utils/functions/createFunction';
-import Carousel from "../commons/Carousel";
 import s from "../styles/ProductAdminView.module.css";
-import ClientView from './ClientView.js';
-import ProductView from "./ProductView";
 import SearchAdmin from "./SearchAdmin";
 import ShoesAdminCard from './ShoesAdminCard';
+import Sidebar from './Sidebar';
 
 
 
@@ -18,18 +15,20 @@ const ProductAdminView = () => {
     const { search } = useParams();
 
     const [shoes, setShoes] = useState([]);
+    console.log(search)
 
     useEffect(() => {
         find(`/products/${search}`)
         .then(productObj => setShoes(productObj))
         .catch(error => console.log(error))
     }, [search])
-
+    console.log(shoes)
     //if(shoes.model === undefined) return null;
  
     return (
         <div>
             <SearchAdmin/> 
+            {/* <Sidebar /> */}
             <ul className={s.productsGrid}>{shoes.map((shoe) => (<ShoesAdminCard key={shoe.id} shoe={shoe} />))}</ul>
         </div>
     )

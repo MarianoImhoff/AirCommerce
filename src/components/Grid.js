@@ -21,6 +21,7 @@ const Grid = () => {
       .get(`http://localhost:8080/api/products/${search}`)
       .then((info) => setShoeSearch(info.data));
   }, []);
+  console.log(shoeSearch)
 
   return (
     <div>

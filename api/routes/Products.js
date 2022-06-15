@@ -2,6 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const router = express.Router();
 const { Users, Products, Orders, Reviews } = require('../models');
+const { findOne } = require('../models/Users');
 
 
 router.get('/', async (req, res) => {
@@ -89,6 +90,8 @@ router.get('/single/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const product = await Products.create(req.body);
+    
+    console.log(req.body)
     res.status(201).send(product);
   } catch (error) {
     res.status(400).send(error);

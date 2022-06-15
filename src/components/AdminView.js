@@ -2,27 +2,27 @@ import React, {useContext} from "react";
 import { useParams } from "react-router-dom";
 //import { Container, Button, Form } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
-import { useFormik, Formik, Field, Form, ErrorMessage} from "formik";
+import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import axios from "axios"
-import s from "../styles/ProductView.module.css";
-import capitalizeFirst from "../utils/functions/capitalizeFunction";
+import s from "../styles/AdminView.module.css";
+//import capitalizeFirst from "../utils/functions/capitalizeFunction";
 import { AuthContext } from '../context/AuthContext';
 //import Button from "../commons/Button";
 
 const AdminView = ({shoes, location}) => {
+    const navigate = useNavigate();
     /* const { isAdmin, superAdmin } = useContext(AuthContext); */
     const userStorage = JSON.parse(localStorage.getItem("user"));
-    console.log(userStorage)
-    console.log(useParams().id)
+    //console.log(userStorage)
+    //console.log(useParams().id)
 
+    const supportedFormats =["image/jpg"];
 
- 
     
     return (
-        <div>
-            <div></div>
-            <div>
+        <div className={s.container}>
+           
                 <Formik
                 initialValues= {{
                     brand: "",
@@ -35,12 +35,12 @@ const AdminView = ({shoes, location}) => {
                 }}
                 validationSchema= {Yup.object({
                     brand: Yup.string()
-                            .required("Brand is required"),
+                            .required("Required"),
                     model: Yup.string()
-                            .required("Name is required")
+                            .required("Required")
                             .min(2, "Name must be 2 characters at minimum "),
                     size: Yup.number("Size must be a number")
-                            .required("Size is required")
+                            .required("Required")
                             .integer("Size must be an integer")
                             .test(
                                 'Is positive?', 
@@ -48,75 +48,81 @@ const AdminView = ({shoes, location}) => {
                                 (value) => value > 0
                             ),
                     color: Yup.string()
-                            .required("Color is required")
+                            .required("Required")
                             .min(4, "Color must be 4 characters at minimum "),
                     stock: Yup.number("Stock must be a number")
-                            .required("Stock is required")
+                            .required("Required")
                             .integer("Stock must be an integer"),
                     price:Yup.number("Price must be a number")
-                            .required("Price is required"),
-                    barcode:Yup.string()
-                            .required("Barcode is required")
-
+                            .required("Required"),
+                    barcode:Yup.number()
+                            .required("Required"),
+                    photo:Yup.mixed()
+                            .required("Required")
+/*                             .test("type", 
+                                "Only the following formats are accepted: .jpeg, .jpg", 
+                                value => value === null || (value && supportedFormats.includes(value[0]?.type))
+                            ) */
                 })}
-                onSubmit={(shoes) => {
-                    axios.post('http://localhost:8080/api/products', {
-                        brand: shoes.brand,
-                        model: shoes.model,
-                        size: shoes.size,
-                        color: shoes.color,
-                        stock: shoes.stock,
-                        price: shoes.price,
-                        barcode: shoes.barcode
+                onSubmit={values => {
+                    console.log(values)
+                        console.log(values.brand)
+                    axios.post('/products', {
+                        brand: values.brand,
+                        model: values.model,
+                        size: values.size,
+                        color: values.color,
+                        stock: values.stock,
+                        price: values.price,
+                        barcode: values.barcode
                     })
                     .then(serverAnswer => {
-                        alert(serverAnswer.data);
-                        //navigate("/login");
+                        console.log(serverAnswer.data);
+                        //navigate(`/${serverAnswer.data.id}`);
                     })
                 }}
                 >
 
-                <Form >
-                    <h3>Brand</h3>
-                    <Field name="brand" type="text"/>
-                    <ErrorMessage name="brand" />
+                <Form className={s.form}>
+                    <div>Brand</div>
+                    <Field className={s.input} name="brand" type="text"/> <br/>
+                    <ErrorMessage className={s.error} name="brand" /> <br/>
 
-                    <h3>Name</h3>
-                    <Field name="model" type="text"/> 
-                    <ErrorMessage name="model" />
+                    <div>Name</div>
+                    <Field className={s.input} name="model" type="text"/> <br/>
+                    <ErrorMessage name="model" /> <br/>
                     
-                    <h3>Size</h3>
-                    <Field name="size" type="number"/> 
-                    <ErrorMessage name="size" />
+                    <div>Size</div>
+                    <Field className={s.input} name="size" type="number"/> <br/>
+                    <ErrorMessage name="size" /> <br/>
 
-                    <h3>Color</h3>
-                    <Field name="color" type="text"/> 
-                    <ErrorMessage name="color" />
+                    <div>Color</div>
+                    <Field className={s.input} name="color" type="text"/> <br/>
+                    <ErrorMessage name="color" /> <br/>
 
-                    <h3>Stock</h3>
-                    <Field name="stock" type="number"/> 
-                    <ErrorMessage name="stock" />
+                    <div>Stock</div>
+                    <Field className={s.input} name="stock" type="number"/> <br/> 
+                    <ErrorMessage name="stock" /> <br/>
 
-                    <h3>Price</h3>
-                    <Field name="price" type="number"/> 
-                    <ErrorMessage name="price" />
+                    <div>Price</div>
+                    <Field className={s.input} name="price" type="number"/> <br/>
+                    <ErrorMessage name="price" /> <br/>
                     
-                    <h3>Barcode</h3>
-                    <Field name="barcode" type="text"/> 
-                    <ErrorMessage name="barcode" /> <br/><br/>
+                    <div>Barcode</div>
+                    <Field className={s.input} name="barcode" type="text"/> <br/>
+                    <ErrorMessage name="barcode" /> <br/>
 
-                    <h3>Product photo</h3>
+                    <div>Photo</div>
                     <Field name="photo" type="file"/> 
                     <ErrorMessage name="photo" /> <br/><br/>
                     
-                    <button 
-                        className={s.button} 
+                    <button className={s.button} 
                         type="submit">
-                        CONTINUE
+                        SUBMIT
                     </button>
                 </Form>
             </Formik>
-        </div>
+    
     </div>
     )
 }
