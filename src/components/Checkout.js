@@ -10,17 +10,18 @@ const Checkout = () => {
     const navigate = new useNavigate();
     const userStorage = JSON.parse(localStorage.getItem("user"));
     const [checkoutInput, setCheckoutInput] = useState({});
+    const cartStorage = JSON.parse(localStorage.getItem("cart"));
+console.log(cartStorage);
 
-
-    const handleCheckout = async () => {
-        
+    const handleCheckout = async (e) => {
+        e.preventDefault()
         try {
             console.log("ya wei");
-            const cart = await
+            const cartProduct = await
                 axios
                     .put("/orders/save", {
-                        products_buy: JSON.stringify(cart),
-                        userNumber: JSON.parse(localStorage.user).id,
+                        products_buy: cartStorage,
+                        userNumber: userStorage.id,
                     })
             const checkout = await
                 axios
