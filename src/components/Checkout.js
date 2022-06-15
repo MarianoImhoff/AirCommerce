@@ -5,6 +5,7 @@ import * as FaIcons from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
+import { checkOut } from '../hooks/Alerts'
 
 const Checkout = () => {
   const navigate = new useNavigate();
@@ -29,6 +30,7 @@ const Checkout = () => {
         fullfilled: false,
         rejected: false,
       });
+      checkOut()
       navigate('/history');
     } catch (err) {
       console.log(err);
