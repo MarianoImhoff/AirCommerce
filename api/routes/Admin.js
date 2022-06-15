@@ -1,5 +1,5 @@
 const express = require('express');
-const { Users } = require('../models');
+const { Users, Orders, Products } = require('../models');
 const router = express.Router();
 const { Op } = require('sequelize');
 const { AuthAdmin } = require('../controllers/middleware/auth'); //MiddleWare para corroborar si el user es un Admin o un simple plebello
@@ -41,5 +41,7 @@ router.get('/:id', AuthAdmin, async (req, res) => {
     res.status(200).send(users)
   }catch(error){console.log(error)}
 });
+
+
 
 module.exports = router;

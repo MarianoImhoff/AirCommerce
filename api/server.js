@@ -59,8 +59,7 @@ const authUser = async (request, accessToken, refreshToken, profile, done) => {
   return done(null, profile);
 };
 
-GOOGLE_CLIENT_ID =
-  '714031971248-tujqisu7g2u6lh1mlcupafnldjeoml31.apps.googleusercontent.com';
+GOOGLE_CLIENT_ID ='714031971248-tujqisu7g2u6lh1mlcupafnldjeoml31.apps.googleusercontent.com';
 GOOGLE_CLIENT_SECRET = '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';
 
 passport.use(

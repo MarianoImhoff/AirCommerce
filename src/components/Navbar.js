@@ -28,13 +28,14 @@ const NavBar = () => {
           products_buy: cartStorage,
         })
       })
+      .then(()=> navigate('/'))
       .then((res) => {
         cart.splice(0, cart.length);
         localStorage.removeItem('user');
         localStorage.removeItem('cart');
         toggleAuth(null);
         console.log('LOGOUT DONE');
-        navigate('/');
+        
       })
       .catch((err) => console.log('ERROR: ', err));
   };
