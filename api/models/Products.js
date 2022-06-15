@@ -42,7 +42,9 @@ Products.init(
 );
 
 Products.addHook('afterCreate', product => {
-  product.url_path = `/${product.id}.jpg`  
+  return product.update({
+    url_path: `/${product.id}.jpg`  
+  })
 })
 
 module.exports = Products;

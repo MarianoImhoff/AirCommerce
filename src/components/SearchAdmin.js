@@ -8,12 +8,14 @@ const SearchAdmin = () => {
     const [searchText, setSearchText] = useState("");
     const navigate = useNavigate()
    
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         navigate(`/update_product/${searchText}`)
     };
 
     const handleChange = (e) => {
-        setSearchText(e.target.value)
+        e.preventDefault();
+        setSearchText(e.target.value);
     };
 
     return (
