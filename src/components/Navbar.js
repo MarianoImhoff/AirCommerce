@@ -17,7 +17,6 @@ const NavBar = () => {
   const [{ cart }] = useCartValue();
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     axios
       .post('/users/logout')

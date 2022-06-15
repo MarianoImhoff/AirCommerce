@@ -10,10 +10,12 @@ import { errorLogin } from '../hooks/Alerts'
 import useInput from '../hooks/useInput';
 
 import { AuthContext } from '../context/AuthContext';
+import { useCartValue } from '../context/CartContext';
 
 const LogIn = () => {
   const navigate = new useNavigate();
   const { user, toggleAuth } = useContext(AuthContext);
+  const [{ cart }] = useCartValue();
 
   const handleSubmit = (values) => {
     axios
@@ -24,6 +26,17 @@ const LogIn = () => {
       .then((user) => {
         localStorage.setItem('user', JSON.stringify(user.data));
         toggleAuth(user.data.name);
+        axios
+          .get(`/orders/load/${user.data.id}`)
+          .then((order) => {
+            const savedCart = JSON.parse(order.data.products_buy);
+            console.log('SAVED CART: ', savedCart);
+            console.log('UNSAVED CART: ', cart);
+            savedCart.forEach((element) => cart.push(element));
+            localStorage.setItem("cart", JSON.stringify(cart));
+            console.log('FINAL CART', cart);
+          })
+          .catch((err) => console.log('ERROR: ', err));
       })
       .then(() => navigate('/Store'))
       .catch(() =>errorLogin() );

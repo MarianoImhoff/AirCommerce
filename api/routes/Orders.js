@@ -3,6 +3,24 @@ const { Op } = require('sequelize');
 const router = express.Router();
 const { Users, Products, Orders, Reviews } = require('../models');
 
+// RUTA PARA RECUPERAR EL CARRITO QUE ESTA GUARDADO EN LA DB CUANDO EL USUARIO HACE LOGIN
+
+router.get('/load/:id', (req, res) => {
+  const id = req.params.id;
+  Orders.findOne({
+    where: {
+      userNumber: id,
+      fullfilled: false,
+    },
+  })
+    .then((order) => {
+      res.status(200).send(order);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 // RUTA PARA SALVAR CARRITO EN DB CUANDO EL USUARIO HACE LOGOUT
 
 router.put('/save', (req, res) => {
@@ -16,8 +34,11 @@ router.put('/save', (req, res) => {
         fullfilled: false,
       },
     }
-  );
-  res.sendStatus(200);
+  )
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 // RUTA PARA HACER EL CHECKOUT DEL CARRITO
