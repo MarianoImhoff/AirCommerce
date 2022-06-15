@@ -11,7 +11,7 @@ const Checkout = () => {
     const userStorage = JSON.parse(localStorage.getItem("user"));
     const [checkoutInput, setCheckoutInput] = useState({});
     const cartStorage = JSON.parse(localStorage.getItem("cart"));
-console.log(cartStorage);
+
 
     const handleCheckout = async (e) => {
         e.preventDefault()
@@ -40,7 +40,7 @@ console.log(cartStorage);
                         rejected: false,
                     })
 
-            console.log("esto es el checkout", checkout);
+                    setCheckoutInput(checkout);
             navigate('/history');
         }
         catch (err) { console.log(err) };

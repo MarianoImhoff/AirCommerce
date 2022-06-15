@@ -1,32 +1,42 @@
-import axios from 'axios';
 import React from 'react'
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-//import s from "../styles/ProductView.module.css";
-import ClientView from './ClientView.js';
-
-
+import s from '../styles/Cart.module.css';
+import ProductCard from '../commons/ProductCard';
 
 const History = () => {
-   
-    const [shoes, setShoes] = useState({});
 
-    useEffect(() => {
-        axios
-        .get(`/products/single/id`)
-        .then(product => setShoes(product))
-        .catch(error => console.log(error))
-    }, [])
+  const [purchasedCartStorage, setPurchasedcartStorages] = useState([]);
+  const cartStorage = JSON.parse(localStorage.getItem("cart"));
+  const userStorage = JSON.parse(localStorage.getItem("user"));
 
-    if(shoes.model === undefined) return null;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/orders/purchase/${userStorage.id}`)
+      .then(product => {
+        console.log(product.data.product_buy);
+         setPurchasedcartStorages(product.data)})
+      .catch(error => console.log(error))
+  }, [])
 
+
+console.log(purchasedCartStorage);
   return (
     <div>
       <h1>Mis Compras</h1>
-        <div className="">
-            <img className="" src={require(`../utils/img${shoes.url_path}`)} alt={shoes.model}></img>
-            <div className=""><ClientView shoes={shoes} /></div>
+
+      <div className={s.productCard} key={purchasedCartStorage.barcode}>
+        <div className={s.imageContainer}>
+        {purchasedCartStorage.map((shoe) => {
+          console.log(shoe.products_buy)
+        return (
+          <ProductCard shoe={shoe} key={shoe.id} />
+        )
+        }
+          )}
         </div>
         
+      </div>
     </div>
   )
 }

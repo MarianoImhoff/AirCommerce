@@ -22,8 +22,10 @@ const Profile = () => {
 }, [])
 
   return (
-    <div>
+    <div >
       <Container>
+        <div style={{justifyContent: 'center', alignItems: "center" }}>
+
         <h1>My Profile</h1>
         <Table>
           <thead>
@@ -54,6 +56,7 @@ const Profile = () => {
           </tbody>
 
         </Table>
+        </div>
 
       </Container>
 

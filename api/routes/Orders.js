@@ -21,6 +21,30 @@ router.get('/load/:id', (req, res) => {
     });
 });
 
+//RUTA PARA RECUPERAR PRODUCTO ADQUIRIDO QUE ESTA GUARDADO EN LA DB CUANDO EL USUARIO VA AL HISTORY
+router.get('/purchase/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+  const orders = [];
+    const order = await Orders.findAll({
+      where: {
+        userNumber: id,
+        fullfilled: true
+
+      },
+    })
+
+order.forEach(or => orders.push(or.dataValues.products_buy));
+console.log(order[0].orders);
+
+    res.status(200).send(orders);
+  
+ }
+    catch (err) {
+  res.status(500).send(err);
+};
+});
+
 // RUTA PARA SALVAR CARRITO EN DB CUANDO EL USUARIO HACE LOGOUT
 
 router.put('/save', (req, res) => {
@@ -58,9 +82,9 @@ router.put('/checkout', (req, res) => {
       },
     }
   )
-  
-  .then(()=> res.sendStatus(200))
-  .catch(error => console.log(error))
+
+    .then(() => res.sendStatus(200))
+    .catch(error => console.log(error))
 });
 
 /*  router.put("/add",(req,res)=>{

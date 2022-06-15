@@ -69,7 +69,6 @@ const Store = () => {
               <ShoesCard shoe={shoe} />
             ))}
           </ul>
-          <button>Next</button>
         </div>
       
   );
