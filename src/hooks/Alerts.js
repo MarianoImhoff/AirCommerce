@@ -52,6 +52,16 @@ export function userExist(){
     })
   }
 
+  export function checkOut(){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Checked Out',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
  
   
 
