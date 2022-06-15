@@ -22,7 +22,7 @@ const ProductAdminView = () => {
         .then(productObj => setShoes(productObj))
         .catch(error => console.log(error))
     }, [search])
-    console.log(shoes)
+    
     //if(shoes.model === undefined) return null;
  
     return (

@@ -20,8 +20,8 @@ const Grid = () => {
     axios
       .get(`http://localhost:8080/api/products/${search}`)
       .then((info) => setShoeSearch(info.data));
-  }, []);
-  console.log(shoeSearch)
+  }, [search]);
+  
 
   return (
     <div>
@@ -51,7 +51,7 @@ const Grid = () => {
 
       <ul className={s.shoesGrid}>
         {shoeSearch.map((shoe) => (
-          <ShoesCard shoe={shoe} />
+          <ShoesCard key= {shoe.id} shoe={shoe} />
         ))}
       </ul>
       <button>Next</button>

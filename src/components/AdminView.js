@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import { useParams } from "react-router-dom";
-//import { Container, Button, Form } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
@@ -9,6 +8,8 @@ import s from "../styles/AdminView.module.css";
 //import capitalizeFirst from "../utils/functions/capitalizeFunction";
 import { AuthContext } from '../context/AuthContext';
 //import Button from "../commons/Button";
+const FormData = require('form-data');
+const form = new FormData();
 
 const AdminView = ({shoes, location}) => {
     const navigate = useNavigate();
@@ -31,7 +32,8 @@ const AdminView = ({shoes, location}) => {
                     color: "",
                     stock: "",
                     price: "",
-                    barcode: ""
+                    barcode: "",
+                    photo: ""
                 }}
                 validationSchema= {Yup.object({
                     brand: Yup.string()
@@ -56,33 +58,42 @@ const AdminView = ({shoes, location}) => {
                     price:Yup.number("Price must be a number")
                             .required("Required"),
                     barcode:Yup.number()
-                            .required("Required"),
+                            .required("Required")/* ,
                     photo:Yup.mixed()
-                            .required("Required")
+                            .required("Required") */
 /*                             .test("type", 
                                 "Only the following formats are accepted: .jpeg, .jpg", 
                                 value => value === null || (value && supportedFormats.includes(value[0]?.type))
                             ) */
                 })}
                 onSubmit={values => {
-                    console.log(values)
-                        console.log(values.brand)
-                    axios.post('/products', {
-                        brand: values.brand,
-                        model: values.model,
-                        size: values.size,
-                        color: values.color,
-                        stock: values.stock,
-                        price: values.price,
-                        barcode: values.barcode
+                    const body = new FormData();
+                    body.append( "brand", values.brand)
+                    body.append( "model", values.model)
+                    body.append( "size", values.size)
+                    body.append( "color", values.color)
+                    body.append( "stock", values.stock)
+                    body.append( "price", values.price)
+                    body.append( "barcode", values.barcode)
+                    body.append( "photo", values.photo)
+               
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:8080/api/products',
+                        data: body,
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        }
                     })
                     .then(serverAnswer => {
-                        console.log(serverAnswer.data);
+                        console.log("SERVER RESPONSE: ",serverAnswer.data);
+                        alert("Product successfully created")
                         //navigate(`/${serverAnswer.data.id}`);
                     })
+                    .catch(err => console.log(err))
                 }}
                 >
-
+                {formProps => (
                 <Form className={s.form}>
                     <div>Brand</div>
                     <Field className={s.input} name="brand" type="text"/> <br/>
@@ -113,14 +124,15 @@ const AdminView = ({shoes, location}) => {
                     <ErrorMessage name="barcode" /> <br/>
 
                     <div>Photo</div>
-                    <Field name="photo" type="file"/> 
-                    <ErrorMessage name="photo" /> <br/><br/>
+                    <input name="photo" type="file" 
+                    onChange={e => formProps.setFieldValue("photo", e.target.files[0])}/><br/><br/>
                     
                     <button className={s.button} 
                         type="submit">
                         SUBMIT
                     </button>
                 </Form>
+                    )}
             </Formik>
     
     </div>

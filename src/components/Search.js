@@ -8,12 +8,14 @@ const Search = () => {
     const [searchText, setSearchText] = useState("");
     const navigate = useNavigate()
 
-    const handleSubmit = () => {
-        navigate(`/Store/${searchText}`)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/Store/${searchText}`);
     };
 
     const handleChange = (e) => {
-        setSearchText(e.target.value)
+        e.preventDefault();
+        setSearchText(e.target.value);
     };
 
     return (
