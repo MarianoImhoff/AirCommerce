@@ -9,6 +9,7 @@ import { getTotal } from '../context/CartReducer';
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
 
+
 //// ALEATORIO LOGUEADO/DESLOGUEADO PARA PROBAR RUTA CHECKOUT
 const logged = Math.random() < 0.5;
 

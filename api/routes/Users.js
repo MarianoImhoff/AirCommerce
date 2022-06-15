@@ -13,14 +13,9 @@ router.post('/register', async (req, res, next) => {
       where: { email },
       defaults: req.body,
     });
-    console.log('estoy aquii', dataUser[1]);
-
-    if (dataUser[1]) {
-      console.log('Usuario creado!');
-    } else {
-      console.log('Usuario existente, porfavor pruebe con otros datos  ');
-    }
-    res.send(dataUser);
+    if (!dataUser[1]){return res.status(404).send('Fail')} 
+    res.status(201).send(dataUser)
+  
   } catch (error) {
     res.status(400).send(error);
   }

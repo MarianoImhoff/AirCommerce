@@ -1,11 +1,11 @@
 import { actionTypes } from '../context/CartReducer';
 import s from '../styles/ProductView.module.css';
 import capitalizeFirst from '../utils/functions/capitalizeFunction';
+import { add } from '../hooks/Alerts';
 import { useCartValue } from '../context/CartContext';
 //import Button from "../commons/Button";
 
 const ClientView = ({ shoes, id }) => {
-
   let buttonName = 'Add to cart';
 
   const [{ cart }, dispatch] = useCartValue();
@@ -23,8 +23,9 @@ const ClientView = ({ shoes, id }) => {
         url_path: shoes.url_path,
         price: shoes.price,
         quantity: 1,
-      }
+      },
     });
+    add();
   };
 
   return (
