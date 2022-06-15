@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "@sweetalert2/theme-bulma": "^5.0.11",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -30,6 +31,7 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "sequelize": "^6.20.1",
+    "sweetalert2": "^11.4.17",
     "volleyball": "^1.5.1",
     "yup": "^0.32.11"
   },
