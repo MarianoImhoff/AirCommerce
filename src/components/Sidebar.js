@@ -53,6 +53,11 @@ const Sidebar = () => {
                     <FaIcons.FaStore/> Update product
                     </Link>
                   </li>
+                  <li>
+              <Link to="/user_orders">
+                <FaIcons.FaUser />User orders
+              </Link>
+            </li>
                 </ul>
               </div>
             ) : null
@@ -69,6 +74,7 @@ const Sidebar = () => {
                 <FaIcons.FaUserTie/> Manage users
                 </Link>
                   </li>
+                
                 </ul>
               </div>
             ) : null
