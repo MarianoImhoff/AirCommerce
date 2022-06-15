@@ -57,7 +57,7 @@ const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
           <li>Talle: {shoe.size}</li>
           <li>Precio: USD {Math.round(shoe.price)}</li>
         </ul>
-        <div>
+        <div className={s.cantidad}>
           <label>Cantidad:&nbsp;</label>      
           <select name={s.quantity} onChange={changeQuantity}>
             <option value="1" selected={shoe.quantity === 1 ? "selected" : ""}>1</option>
