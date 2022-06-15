@@ -45,7 +45,20 @@ router.put('/save', (req, res) => {
 
 router.put('/checkout', (req, res) => {
   console.log('GUARDANDO CAMBIOS DE CARRITO EN DB...', req.body);
-  res.sendStatus(200);
+  Orders.update(
+    {
+      fullfilled: true
+    },
+    {
+      where: {
+        userNumber: req.body.userNumber,
+        fullfilled: false,
+      },
+    }
+  )
+  
+  .then(()=> res.sendStatus(200))
+  .catch(error => console.log(error))
 });
 
 /*  router.put("/add",(req,res)=>{

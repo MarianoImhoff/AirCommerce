@@ -21,6 +21,7 @@ const History = () => {
 
   return (
     <div>
+      <h1>Mis Compras</h1>
         <div className="">
             <img className="" src={require(`../utils/img${shoes.url_path}`)} alt={shoes.model}></img>
             <div className=""><ClientView shoes={shoes} /></div>
