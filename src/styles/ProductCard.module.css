@@ -42,6 +42,10 @@
   line-height: 1.5em;
 }
 
+.details > .cantidad {
+  display: flex;
+} 
+
 .details > .trash {
   display: flex;
   justify-content: end;
