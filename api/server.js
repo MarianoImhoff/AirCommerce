@@ -86,7 +86,7 @@ passport.deserializeUser(function (id, done) {
 app.use('/api', routes);
 app.use('/', (req, res, next) => res.redirect('/api'));
 
-db.sync({ force:false })
+db.sync({ force: false })
   .then(() => {
     app.listen(PORT, (req, res, next) => {
       console.log(`AirCommerce on port ${PORT}`);

@@ -8,15 +8,15 @@ orderNumber:{
     type: S.INTEGER,
     defaultValue: null,
 },
-products_buy:{
+ products_buy:{
     type: S.ARRAY(S.JSON),
     defaultValue: [],
-    // allowNull: false,
-  },
+    
+  }, 
 price_final:{
     type: S.INTEGER,
     defaultValue: 0,
-    // allowNull: false,
+    
   },
 userNumber:{
     type:S.INTEGER,
