@@ -24,11 +24,11 @@ router.get('/load/:id', (req, res) => {
 // RUTA PARA SALVAR CARRITO EN DB CUANDO EL USUARIO HACE LOGOUT
 
 router.put('/save', (req, res) => {
-  console.log(req.body);
+ 
   Orders.update(
     {
       products_buy: req.body.products_buy,
-      userNumber: req.body.userNumber
+      userNumber: req.body.userNumber,
     },
     {
       where: {
@@ -46,10 +46,11 @@ router.put('/save', (req, res) => {
 // RUTA PARA HACER EL CHECKOUT DEL CARRITO
 
 router.put('/checkout', (req, res) => {
-  console.log('GUARDANDO CAMBIOS DE CARRITO EN DB...', req.body);
   Orders.update(
     {
-      fullfilled: true
+      products_buy: req.body.products_buy,
+      userNumber: req.body.userNumber,
+      fullfilled: true,
     },
     {
       where: {
@@ -58,9 +59,9 @@ router.put('/checkout', (req, res) => {
       },
     }
   )
-  
-  .then(()=> res.sendStatus(200))
-  .catch(error => console.log(error))
+
+    .then(() => res.sendStatus(200))
+    .catch((error) => console.log(error));
 });
 
 /*  router.put("/add",(req,res)=>{
