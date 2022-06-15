@@ -40,9 +40,6 @@ modelName: "orders"
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    order.orderNumber = `${order.userNumber}.${day}.${month}.${year}` 
-    
-    
-    
+    order.orderNumber = `${order.userNumber}/${day}/${month}/${year}` 
  })
 module.exports = Orders
