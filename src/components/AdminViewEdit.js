@@ -51,16 +51,16 @@ const AdminViewEdit = () => {
                     const body = new FormData();
                     
                     if (values.brand) {
-                        body.append( "brand", values.brand)
+                        body.append( "brand", values.brand.toLowerCase())
                     }
                     if (values.model) {
-                        body.append( "model", values.model)
+                        body.append( "model", values.model.toLowerCase())
                     }
                     if (values.size) {
                         body.append( "size", values.size)
                     }
                     if (values.color) {
-                        body.append( "color", values.color)
+                        body.append( "color", values.color.toLowerCase())
                     }
                     if (values.price) {
                         body.append( "price", values.price)

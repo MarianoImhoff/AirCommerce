@@ -32,7 +32,7 @@ router.get('/:search', async (req, res) => {
     let search = req.params.search;
     search = search.toLowerCase();
     const product = await Products.findAll({
-      where: {[Op.or]: [{ brand: search }, { model: search }, { color: search }]},
+      where: {[Op.or]: [{ barcode: search },{ brand: search }, { model: search }, { color: search }]},
     });
     res.status(200).send(product);
   } catch (error) {console.log(error)}
@@ -84,6 +84,7 @@ router.get('/single/:id', async (req, res) => {
 
 router.post('/', upload.single('photo'), async (req, res) => {
   try {
+ 
     const product = await Products.create(JSON.parse(JSON.stringify(req.body)));
     fs.rename(req.file.path ,`src/utils/img${product.url_path}`, err => {if (err) console.log(err)})
     res.status(201).send(product);
@@ -98,6 +99,7 @@ router.put('/:id', upload.single('photo'), async (req, res) => {
     const { id } = req.params;
     const product = await Products.findOne({ where: { id } });
     const updatedProduct = await Products.update(req.body, {where: { id: product.id }})
+    fs.rename(req.file.path ,`src/utils/img${product.url_path}`, err => {if (err) console.log(err)})
     res.status(201).send(product)
   } catch (error) {res.status(400).send(error)}
 });
