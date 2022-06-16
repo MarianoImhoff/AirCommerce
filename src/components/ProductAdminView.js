@@ -4,8 +4,7 @@ import find from '../utils/functions/findFunction';
 import s from "../styles/ProductAdminView.module.css";
 import SearchAdmin from "./SearchAdmin";
 import ShoesAdminCard from './ShoesAdminCard';
-import Sidebar from './Sidebar';
-
+//import Sidebar from './Sidebar';
 
 
 const ProductAdminView = () => {
