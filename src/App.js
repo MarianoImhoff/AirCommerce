@@ -50,18 +50,19 @@ export default function App() {
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />
-                <Route exact path="/SuperAdmin/users/:dni" element={isSuperAdmin ? <UserSingleView /> : <NotAllowed />} />
                 <Route exact path="/user_orders" element={<UserOrders />} />
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
                 <Route exact path='/history' element={<History />} />            
-
+                <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView /> } />
+                <Route exact path="/SuperAdmin/users" element={<SuperAdmin /> } />
                 <Route exact path='/update_product' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
                 <Route exact path='/update_product/:search' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
                 <Route exact path='/update_product/single/:id' element={isAdmin ? <AdminViewEdit /> : <NotAllowed />}/>
                 <Route exact path='/create_product' element={isAdmin ? <AdminView /> : <NotAllowed />}/>
                 
-
+                
+                
 
             </Routes>
         </>
