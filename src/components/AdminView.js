@@ -1,29 +1,35 @@
-import React, {useContext} from "react";
-import { useParams } from "react-router-dom";
+//import React, {useContext} from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import axios from "axios"
 import s from "../styles/AdminView.module.css";
 //import capitalizeFirst from "../utils/functions/capitalizeFunction";
-import { AuthContext } from '../context/AuthContext';
-//import Button from "../commons/Button";
+//import { AuthContext } from '../context/AuthContext';
 const FormData = require('form-data');
 const form = new FormData();
 
-const AdminView = ({shoes, location}) => {
+const AdminView = () => {
     const navigate = useNavigate();
     /* const { isAdmin, superAdmin } = useContext(AuthContext); */
     const userStorage = JSON.parse(localStorage.getItem("user"));
-    //console.log(userStorage)
-    //console.log(useParams().id)
+    console.log(userStorage)
 
-    const supportedFormats =["image/jpg"];
+
+ let location = useLocation().pathname.slice(1,15); 
+    let id = useParams().id;
+    let search = useLocation().search.slice(2)
+
+console.log("LOCATION: ", location)
+console.log("ID: ", id)
 
     
     return (
         <div className={s.container}>
-           
+{/*                 {location === "update_product" 
+                ? <div>{`Updating ${shoe.brand} ` }</div>: ""} */}
+
                 <Formik
                 initialValues= {{
                     brand: "",
@@ -58,13 +64,7 @@ const AdminView = ({shoes, location}) => {
                     price:Yup.number("Price must be a number")
                             .required("Required"),
                     barcode:Yup.number()
-                            .required("Required")/* ,
-                    photo:Yup.mixed()
-                            .required("Required") */
-/*                             .test("type", 
-                                "Only the following formats are accepted: .jpeg, .jpg", 
-                                value => value === null || (value && supportedFormats.includes(value[0]?.type))
-                            ) */
+                            .required("Required")
                 })}
                 onSubmit={values => {
                     const body = new FormData();
@@ -88,7 +88,7 @@ const AdminView = ({shoes, location}) => {
                     .then(serverAnswer => {
                         console.log("SERVER RESPONSE: ",serverAnswer.data);
                         alert("Product successfully created")
-                        //navigate(`/${serverAnswer.data.id}`);
+                        navigate(`/${serverAnswer.data.id}`);
                     })
                     .catch(err => console.log(err))
                 }}

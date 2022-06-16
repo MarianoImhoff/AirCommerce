@@ -85,13 +85,12 @@ router.get('/single/:id', async (req, res) => {
 router.post('/', upload.single('photo'), async (req, res) => {
   try {
     const product = await Products.create(JSON.parse(JSON.stringify(req.body)));
-    //console.log("REQ.FILE IMAGE:-----------------------------", req.file.path)
-    //fs.rename(req.file.path,`/src/utils/img/4`)
+    fs.rename(req.file.path ,`src/utils/img${product.url_path}`, err => {if (err) console.log(err)})
     res.status(201).send(product);
   } catch (error) {
     res.status(400).send(error);
   }
- 
+  
 });
 
 router.put('/:id', async (req, res) => {
