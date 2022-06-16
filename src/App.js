@@ -21,8 +21,12 @@ import UserSingleView from "./components/UserSingleView";
 import ProductAdminView from "./components/ProductAdminView";
 import AdminViewEdit from "./components/AdminViewEdit";
 import AdminView from "./components/AdminView";
+
+/* import UserOrders from "./components/UserOrders" */
+
 import UserOrders from "./components/UserOrders";
 import NotAllowed from "./components/NotAllowed";
+
 
 
 export default function App() {
@@ -51,7 +55,7 @@ export default function App() {
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
                 <Route exact path='/history' element={<History />} />            
-                <Route exact path="/checkout" element={<Checkout />} /> 
+
                 <Route exact path='/update_product' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
                 <Route exact path='/update_product/:search' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
                 <Route exact path='/update_product/single/:id' element={isAdmin ? <AdminViewEdit /> : <NotAllowed />}/>
