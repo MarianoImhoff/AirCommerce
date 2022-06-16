@@ -62,7 +62,26 @@ export function userExist(){
     })
   }
 
- 
+  export function create(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Product successfully created',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+  export function update(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Product successfully updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   
 
  

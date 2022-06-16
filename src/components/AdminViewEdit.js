@@ -1,17 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate  } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
-import axios from "axios"
+import axios from "axios";
+import find from "../utils/functions/findFunction";
 import s from "../styles/AdminView.module.css";
-import { create } from '../hooks/Alerts';
+import { update } from '../hooks/Alerts';
 const FormData = require('form-data');
 
-const AdminView = () => {
+
+const AdminViewEdit = () => {
     const navigate = useNavigate();
+    let id = useParams().id;
+    const [shoes, setShoes] = useState({});
 
+    useEffect(() => {
+        find(`/products/single/${id}`)
+        .then(productObj => setShoes(productObj))
+        .catch(error => console.log(error))
+    }, [id])
 
+    
     return (
         <div className={s.container}>
+
             <Formik
                 initialValues= {{
                     brand: "",
@@ -24,44 +36,48 @@ const AdminView = () => {
                     photo: ""
                 }}
                 validationSchema= {Yup.object({
-                    brand: Yup.string()
-                            .required("Required"),
-                    model: Yup.string()
-                            .required("Required")
-                            .min(2, "Name must be 2 characters at minimum "),
+                    brand: Yup.string(),
+                    model: Yup.string(),
                     size: Yup.number("Size must be a number")
-                            .required("Required")
-                            .integer("Size must be an integer")
-                            .test(
-                                'Is positive?', 
-                                'ERROR: The number must be greater than 0!', 
-                                (value) => value > 0
-                            ),
-                    color: Yup.string()
-                            .required("Required")
-                            .min(4, "Color must be 4 characters at minimum "),
+                            .integer("Size must be an integer"),
+                    color: Yup.string(),
                     stock: Yup.number("Stock must be a number")
-                            .required("Required")
                             .integer("Stock must be an integer"),
-                    price:Yup.number("Price must be a number")
-                            .required("Required"),
+                    price:Yup.number("Price must be a number"),
                     barcode:Yup.number()
-                            .required("Required")
+
                 })}
                 onSubmit={values => {
                     const body = new FormData();
-                    body.append( "brand", values.brand)
-                    body.append( "model", values.model)
-                    body.append( "size", values.size)
-                    body.append( "color", values.color)
-                    body.append( "stock", values.stock)
-                    body.append( "price", values.price)
-                    body.append( "barcode", values.barcode)
-                    body.append( "photo", values.photo)
-               
+                    
+                    if (values.brand) {
+                        body.append( "brand", values.brand)
+                    }
+                    if (values.model) {
+                        body.append( "model", values.model)
+                    }
+                    if (values.size) {
+                        body.append( "size", values.size)
+                    }
+                    if (values.color) {
+                        body.append( "color", values.color)
+                    }
+                    if (values.price) {
+                        body.append( "price", values.price)
+                    }
+                    if (values.stock) {
+                        body.append( "stock", values.stock)
+                    }
+                    if (values.barcode) {
+                        body.append( "barcode", values.barcode)
+                    }
+                    if (values.photo) {
+                        body.append( "photo", values.photo)
+                    }
+
                     axios({
-                        method: 'post',
-                        url: 'http://localhost:8080/api/products',
+                        method: 'put',
+                        url:`http://localhost:8080/api/products/${id}`,
                         data: body,
                         headers: {
                             "Content-Type": "multipart/form-data",
@@ -69,7 +85,7 @@ const AdminView = () => {
                     })
                     .then(serverAnswer => {
                         console.log("SERVER RESPONSE: ",serverAnswer.data);
-                        create();
+                        update();
                         navigate(`/${serverAnswer.data.id}`);
                     })
                     .catch(err => console.log(err))
@@ -78,31 +94,31 @@ const AdminView = () => {
                 {formProps => (
                 <Form className={s.form}>
                     <div>Brand</div>
-                    <Field className={s.input} name="brand" type="text"/> <br/>
+                    <Field className={s.input} name="brand" type="text" placeholder={`${shoes.brand}`}/> <br/>
                     <ErrorMessage className={s.error} name="brand" /> <br/>
 
                     <div>Name</div>
-                    <Field className={s.input} name="model" type="text"/> <br/>
+                    <Field className={s.input} name="model" type="text" placeholder={`${shoes.model}`}/> <br/>
                     <ErrorMessage name="model" /> <br/>
                     
                     <div>Size</div>
-                    <Field className={s.input} name="size" type="text"/> <br/>
+                    <Field className={s.input} name="size" type="text" placeholder={`${shoes.size}`}/> <br/>
                     <ErrorMessage name="size" /> <br/>
 
                     <div>Color</div>
-                    <Field className={s.input} name="color" type="text"/> <br/>
+                    <Field className={s.input} name="color" type="text" placeholder={`${shoes.color}`}/> <br/>
                     <ErrorMessage name="color" /> <br/>
 
                     <div>Stock</div>
-                    <Field className={s.input} name="stock" type="text"/> <br/> 
+                    <Field className={s.input} name="stock" type="text" placeholder={`${shoes.stock}`}/> <br/> 
                     <ErrorMessage name="stock" /> <br/>
 
                     <div>Price</div>
-                    <Field className={s.input} name="price" type="text"/> <br/>
+                    <Field className={s.input} name="price" type="text" placeholder={`${shoes.price}`}/> <br/>
                     <ErrorMessage name="price" /> <br/>
                     
                     <div>Barcode</div>
-                    <Field className={s.input} name="barcode" type="text"/> <br/>
+                    <Field className={s.input} name="barcode" type="text" placeholder={`${shoes.barcode}`}/> <br/>
                     <ErrorMessage name="barcode" /> <br/>
 
                     <div>Photo</div>
@@ -120,4 +136,4 @@ const AdminView = () => {
     )
 }
 
-export default AdminView;
+export default AdminViewEdit;

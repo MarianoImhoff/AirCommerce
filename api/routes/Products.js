@@ -93,12 +93,12 @@ router.post('/', upload.single('photo'), async (req, res) => {
   
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', upload.single('photo'), async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Products.findOne({ where: { id } });
-    const productUpdate = await Products.update(req.body, {where: { id: product.id }})
-    res.status(201).send(productUpdate)
+    const updatedProduct = await Products.update(req.body, {where: { id: product.id }})
+    res.status(201).send(product)
   } catch (error) {res.status(400).send(error)}
 });
 
