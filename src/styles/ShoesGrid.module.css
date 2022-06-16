@@ -48,12 +48,14 @@
   
   /* Dropdown Content (Hidden by Default) */
   .dropdownContent {
+    
     display: none;
     position: absolute;
     min-width: 200px;
-    border-radius: 20px;
+    border-radius: 50px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    background-color:rgb(251, 251, 251,0.1)
+    background-color:rgb(251, 251, 251,0.1);
+    
 
   }
   
@@ -74,13 +76,14 @@
     justify-content: space-around;
     align-items: center;
     padding-bottom: 60px;
+    padding-top: 40px;
    
   }
   
   /* Change color of dropdown links on hover */
   .dropdownContent a:hover {
     text-align: center;
-    border-radius: 10px;
+    border-radius: 50px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     background-color:rgb(251, 251, 251,0.1);
     display: flex;
@@ -151,6 +154,7 @@
           justify-content: space-around;
           align-items: center;
           padding-bottom: 60px;
+          padding-top: 40px;
          
         }
         
@@ -232,6 +236,7 @@
         justify-content: space-around;
         align-items: center;
         padding-bottom: 60px;
+        padding-top: 40px;
        
       }
       
