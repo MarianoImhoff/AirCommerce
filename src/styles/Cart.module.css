@@ -1,5 +1,5 @@
 .cart {
-  background-color: lightsteelblue;
+  background-color: whitesmoke;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -60,4 +60,14 @@
   text-align: center;
   margin-top: 20px;
   padding: 0 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .cart {
+    flex-direction: column;
+  }
+
+  .subtotal{
+    margin-top: 20px;
+  }
 }
