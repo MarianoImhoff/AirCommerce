@@ -22,11 +22,7 @@ import ProductAdminView from "./components/ProductAdminView";
 import AdminViewEdit from "./components/AdminViewEdit";
 import AdminView from "./components/AdminView";
 
-import UserOrders from "./components/UserOrders"
-
-
-
-
+/* import UserOrders from "./components/UserOrders" */
 
 import UserOrders from "./components/UserOrders";
 import NotAllowed from "./components/NotAllowed";
@@ -63,7 +59,8 @@ export default function App() {
                 <Route exact path='/update_product/:search' element={<ProductAdminView />}/>
                 <Route exact path='/update_product/single/:id' element={<AdminView />}/>
                 <Route exact path='/create_product' element={<AdminView />}/>
-                
+                <Route exact path='/account/:user' element={<Account />} />
+               
 
 
             </Routes>
