@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import styles from "../styles/Search.css"
+import s from "../styles/SearchAdmin.module.css"
 import { ImSearch } from 'react-icons/im';
 
 const SearchAdmin = () => {
@@ -20,16 +20,16 @@ const SearchAdmin = () => {
 
     return (
         <>
-            <form class="searchContainer" onSubmit={handleSubmit} >
-                <div class="searchBox">
+            <form className={s.searchContainer} onSubmit={handleSubmit} >
+                <div className={s.searchBox}>
                 <input
                     type="search"
-                    placeholder="Search"
-                    className="searchInput"
+                    placeholder="Search for the product"
+                    className={s.searchInput}
                     aria-label="Search"
                     onChange={handleChange}
                 />
-                <button class="searchButton" variant="outline-success"><ImSearch  /></button>
+                <button className={s.searchButton} variant="outline-success"><ImSearch  /></button>
                 </div>
             </form>    
         </>
