@@ -47,6 +47,7 @@ export default function App() {
                 <Route exact path='/Store/sortBy/:type' element={<SortBy />} />
                 <Route exact path='/account/:user' element={<Account />} />
                 <Route exact path="/login" element={<Login />} />
+                <Route exact path="/checkout" element={<Checkout />} />
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />

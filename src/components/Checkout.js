@@ -11,7 +11,7 @@ import emailjs from "emailjs-com";
 
 const Checkout = () => {
   const cart = useCartValue()
-  const navigate = new useNavigate();
+  const navigate = useNavigate();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const cartStorage = JSON.parse(localStorage.getItem("cart"));
 
@@ -52,13 +52,12 @@ const Checkout = () => {
         rejected: false,
       });
 
-     
-      cart.splice(0, cart.length);
       localStorage.removeItem('cart');
       checkOut()
       checkoutEmail()
-      navigate('/history');
-      window.location.reload()
+      navigate('/history')
+      
+      
     } catch (err) {
       console.log(err);
     }
