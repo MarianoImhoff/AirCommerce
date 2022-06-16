@@ -6,6 +6,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import s from '../styles/Profile.module.css'
 
 const Profile = () => {
 
@@ -26,29 +27,29 @@ const Profile = () => {
       <Container>
         <div style={{justifyContent: 'center', alignItems: "center" }}>
 
-        <h1>My Profile</h1>
+        <h1 className={s.h1} >My Profile</h1>
         <Table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>E-mail</th>
-              <th>DNI</th>
-              <th>Address</th>
+              <th className={s.th}>Name</th>
+              <th className={s.th}>Last Name</th>
+              <th className={s.th}>E-mail</th>
+              <th className={s.th}>DNI</th>
+              <th className={s.th}>Address</th>
               
             </tr>
           </thead>
           <tbody>
             {
                 <tr>
-                  <td>{users.name}</td>
-                  <td>{users.surname}</td>
-                  <td>{users.email}</td>
-                  <td>{users.dni}</td>
-                  <td>{users.address}</td>
+                  <td className={s.td}>{users.name}</td>
+                  <td className={s.td}>{users.surname}</td>
+                  <td className={s.td}>{users.email}</td>
+                  <td className={s.td}>{users.dni}</td>
+                  <td className={s.td}>{users.address}</td>
             
                   <td>
-                  <Link to="/profile_edit"><Button>EDIT</Button></Link></td>
+                  <Link to="/profile_edit"><Button className={s.dropbtn}>EDIT</Button></Link></td>
                 </tr>
               
             }

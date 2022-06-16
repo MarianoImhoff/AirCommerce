@@ -21,8 +21,16 @@ import UserSingleView from "./components/UserSingleView";
 import ProductAdminView from "./components/ProductAdminView";
 import AdminViewEdit from "./components/AdminViewEdit";
 import AdminView from "./components/AdminView";
+
+import UserOrders from "./components/UserOrders"
+
+
+
+
+
 import UserOrders from "./components/UserOrders";
 import NotAllowed from "./components/NotAllowed";
+
 
 
 export default function App() {
