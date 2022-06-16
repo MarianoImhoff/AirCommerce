@@ -138,16 +138,7 @@ Products.bulkCreate([
 ]);
 
 Users.bulkCreate([
-  {
-    name: 'superAdmin',
-    surname: 'superAdmin',
-    email: 'superadmin@admin.com',
-    password: 'superadmin',
-    address: 'admin house',
-    dni: 44264552,
-    isAdmin: true,
-    superAdmin: true,
-  },
+ 
   {
     name: 'admin',
     surname: 'admin',

@@ -35,14 +35,13 @@ const NavBar = () => {
           products_buy: cartStorage,
         });
       })
-      .then(()=> navigate('/'))
+      .then(() => navigate('/'))
       .then((res) => {
         cart.splice(0, cart.length);
         localStorage.removeItem('user');
         localStorage.removeItem('cart');
         toggleAuth(null);
         console.log('LOGOUT DONE');
-        
       })
       .catch((err) => console.log('ERROR: ', err));
   };
@@ -65,24 +64,10 @@ const NavBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
+          <Nav className="me-1 my-2 my-lg-0">
             <Nav.Link href="/Store">Store</Nav.Link>
-          </Nav>
-
-          <Search />
-
-          <Nav
-            className="ms-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
             {user ? (
               <>
-                <Navbar.Text>Hola {user}!</Navbar.Text>
                 <Nav.Link href={`/account/${user}`} className="">
                   Mi Cuenta
                 </Nav.Link>
@@ -95,80 +80,29 @@ const NavBar = () => {
               </>
             )}
           </Nav>
-          <Nav
-            className="ms-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
+
+          <Nav className="me-auto my-2 my-lg-0">
             <Nav.Link href="/Cart">
-              <Button variant="outline-success">
+              <Button  style={{color:'black', borderColor:'black'}} variant="outline-success">
                 <FaShoppingCart />
               </Button>
             </Nav.Link>
           </Nav>
+
+          <Nav className="me-auto my-2 my-lg-0">
+            {user ? (
+              <>
+                <Navbar.Text>Hola {user}!</Navbar.Text>
+              </>
+            ) : (
+              <></>
+            )}
+          </Nav>
+
+          <Search className="me-auto my-2 my-lg-0" />
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-    //// VERSIÓN PREVIA
-
-    // <Navbar bg="dark" expand="md">
-    //   <Container fluid>
-    //     <Link
-    //       style={{
-    //         display: 'flex',
-    //         paddingLeft: '13px',
-    //         textDecoration: 'none',
-    //         alignItems: 'center',
-    //       }}
-    //       to="/"
-    //     >
-    //       <img
-    //         src={logo}
-    //         width="80"
-    //         height="80"
-    //         style={{ borderRadius: '5px' }}
-    //         alt="logo"
-    //       />
-    //       <h1
-    //         style={{
-    //           display: 'flex',
-    //           color: 'white',
-    //           marginLeft: '10px',
-    //           marginTop: '15px',
-    //         }}
-    //       >
-    //         AirCommerce
-    //       </h1>
-    //     </Link>
-    //     <Link to="/Store">
-    //       <Button variant="outline-success">Tienda</Button>
-    //     </Link>
-
-    //     <Search />
-
-    //     {user ? (
-    //       <>
-    //         <Button onClick={handleLogout} variant="outline-success">
-    //           Logout
-    //         </Button>
-    //         <Link to={`/account/${user}`}>
-    //           <Button variant="outline-success">{user}</Button>
-    //         </Link>
-    //       </>
-    //     ) : (
-    //       <Link to="/Login">
-    //         <Button variant="outline-success">Login</Button>
-    //       </Link>
-    //     )}
-
-    //     <Link to="/Cart">
-    //       <Button variant="outline-success">
-    //         <FaShoppingCart />
-    //       </Button>
-    //     </Link>
-    //   </Container>
-    // </Navbar>
   );
 };
 

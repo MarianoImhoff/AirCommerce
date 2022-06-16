@@ -1,11 +1,11 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { ImSearch } from 'react-icons/im';
-import useInput from '../hooks/useInput';
-import { Button, Container, Table } from 'react-bootstrap'
 import { useNavigate } from 'react-router';
+import { ImSearch } from 'react-icons/im';
+import { Button, Container, Table } from 'react-bootstrap'
+import useInput from '../hooks/useInput';
 import { success } from '../hooks/Alerts'
+import s from '../styles/SuperAdmin.module.css'
 
 const SuperAdmin = () => {
   const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -53,29 +53,31 @@ const SuperAdmin = () => {
         
         <div onSubmit={handleSubmit}>
         <form >
-        <div className="searchBox">
+        <div className={s.searchBox}>
           <input
+          className={s.searchInput}
             type="search"
             placeholder="Search User By DNI"
-            className="searchInput"
+            className={s.searchInput}
             aria-label="Search"
             {...input}
           />
-          <button className="searchButton" variant="outline-success">
-            <ImSearch />
+          <button className="searchButton" variant="outline-success" >
+            
           </button>
         </div>
       </form>
       </div>
         <Table>
           <thead>
-            <tr>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>E-mail</th>
-              <th>DNI</th>
-              <th>Address</th>
-              <th>Admin</th>
+            <tr >
+              <th className={s.th}>Name</th>
+              <th className={s.th}>Last Name</th>
+              <th className={s.th}>E-mail</th>
+              <th className={s.th}>DNI</th>
+              <th className={s.th}>Address</th>
+              <th className={s.th}>Admin</th>
+              <th className={s.th}>Give or Take Rol</th>
 
             </tr>
           </thead>
@@ -84,13 +86,13 @@ const SuperAdmin = () => {
           <tbody key={index}>
             {
                 <tr>
-                  <td>{user.name}</td>
-                  <td>{user.surname}</td>
-                  <td>{user.email}</td>
-                  <td>{user.dni}</td>
-                  <td>{user.address}</td>
-                  <td>{(user.isAdmin)? "Yes" : "No"}</td>
-                  <td><button onClick={() => {handleRol(user.id, user.isAdmin)}}>{user.isAdmin ? 'Take Rol Admin' : 'Give Rol Admin'}</button></td>
+                  <td className={s.td}>{user.name}</td>
+                  <td className={s.td}>{user.surname}</td>
+                  <td className={s.td}>{user.email}</td>
+                  <td className={s.td}>{user.dni}</td>
+                  <td className={s.td}>{user.address}</td>
+                  <td className={s.td}>{(user.isAdmin)? "Yes" : "No"}</td>
+                  <td className={s.td}><button className={s.dropbtn} onClick={() => {handleRol(user.id, user.isAdmin)}}>{user.isAdmin ? 'Take Rol Admin' : 'Give Rol Admin'}</button></td>
                 </tr>
 
             }

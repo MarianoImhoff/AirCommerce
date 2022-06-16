@@ -45,18 +45,19 @@ export default function App() {
                 <Route exact path="/Store" element={<Store />} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />
-                <Route exact path='/account/:user' element={<Account />} />
+                <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView />} />
+                <Route exact path="/user_orders" element={<UserOrders />} />
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
-                <Route exact path='/SuperAdmin/users' element={isSuperAdmin ? <SuperAdmin /> : <NotAllowed />}/>
-                <Route exact path="/SuperAdmin/users/:dni" element={isSuperAdmin ? <UserSingleView /> : <NotAllowed />} />
-                <Route exact path="/user_orders" element={<UserOrders />} />
-                <Route path='/history' element={<History />} /> 
+                <Route exact path='/history' element={<History />} />            
                 <Route exact path="/checkout" element={<Checkout />} /> 
-                <Route exact path='/update_product' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
-                <Route exact path='/update_product/:search' element={isAdmin ? <ProductAdminView /> : <NotAllowed />}/>
-                <Route exact path='/update_product/single/:id' element={isAdmin ? <AdminViewEdit /> : <NotAllowed />}/>
-                <Route exact path='/create_product' element={isAdmin ? <AdminView /> : <NotAllowed />}/>
+                <Route exact path='/update_product' element={<ProductAdminView />}/>
+                <Route exact path='/update_product/:search' element={<ProductAdminView />}/>
+                <Route exact path='/update_product/single/:id' element={<AdminView />}/>
+                <Route exact path='/create_product' element={<AdminView />}/>
+                
+
+
             </Routes>
         </>
 

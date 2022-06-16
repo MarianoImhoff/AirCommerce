@@ -69,7 +69,7 @@ const ProductCard = ({ shoe, handleQuantity, handleRemoveItem }) => {
         </div>
         <div className={s.trash}>
           <p>
-            Eliminar producto del carrito <FaTrashAlt onClick={removeItem} />
+            <FaTrashAlt onClick={removeItem} />
           </p>
         </div>
       </div>
