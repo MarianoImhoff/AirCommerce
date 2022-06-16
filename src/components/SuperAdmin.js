@@ -56,9 +56,9 @@ const SuperAdmin = () => {
         <div className={s.searchBox}>
           <input
           className={s.searchInput}
+            className={s.searchInput}
             type="search"
             placeholder="Search User By DNI"
-            className={s.searchInput}
             aria-label="Search"
             {...input}
           />
