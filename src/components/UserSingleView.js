@@ -7,6 +7,7 @@ import { Button, Container, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { success } from '../hooks/Alerts';
+import s from '../styles/SuperAdmin.module.css'
 
 const UserSingleView = () => {
   const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -54,16 +55,16 @@ const UserSingleView = () => {
       <Container>
         <div onSubmit={handleSubmit}>
           <form>
-            <div className="searchBox">
+            <div className={s.searchBox}>
               <input
                 type="search"
                 placeholder="Search User By DNI"
-                className="searchInput"
+                className={s.searchInput}
                 aria-label="Search"
                 {...input}
               />
               <button className="searchButton" variant="outline-success">
-                <ImSearch />
+                
               </button>
             </div>
           </form>
@@ -71,26 +72,27 @@ const UserSingleView = () => {
         <Table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>E-mail</th>
-              <th>DNI</th>
-              <th>Address</th>
-              <th>Admin</th>
+            <th className={s.th}>Name</th>
+              <th className={s.th}>Last Name</th>
+              <th className={s.th}>E-mail</th>
+              <th className={s.th}>DNI</th>
+              <th className={s.th}>Address</th>
+              <th className={s.th}>Admin</th>
+              <th className={s.th}>Give or Take Rol</th>
             </tr>
           </thead>
 
           <tbody key={'searchUser'}>
             {
               <tr>
-                <td>{searchUser.name}</td>
-                <td>{searchUser.surname}</td>
-                <td>{searchUser.email}</td>
-                <td>{searchUser.dni}</td>
-                <td>{searchUser.address}</td>
-                <td>{searchUser.isAdmin ? 'Yes' : 'No'}</td>
-                <td>
-                  <button
+                <td className={s.td}>{searchUser.name}</td>
+                <td className={s.td}>{searchUser.surname}</td>
+                <td className={s.td}>{searchUser.email}</td>
+                <td className={s.td}>{searchUser.dni}</td>
+                <td className={s.td}>{searchUser.address}</td>
+                <td className={s.td}>{searchUser.isAdmin ? 'Yes' : 'No'}</td>
+                <td className={s.td}>
+                  <button className={s.dropbtn}
                     onClick={() => {
                       handleRol(searchUser.id, searchUser.isAdmin);
                     }}

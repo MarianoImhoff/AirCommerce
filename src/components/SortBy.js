@@ -28,6 +28,7 @@ const SortBy = () => {
   return (
     <div>
     <h1>Store</h1>
+    <div className={s.dropdownContainer}>
     <div className={s.dropdown} key={'SortB'}>
     <button className={s.dropbtn}>Brand</button>
     <div className={s.dropdownContent}>
@@ -39,21 +40,22 @@ const SortBy = () => {
     <div className={s.dropdown} key={'SortP'}>
     <button className={s.dropbtn}>Price</button>
     <div className={s.dropdownContent}>
-    <a  onClick={() => {handleSort('+price')}}><p>Lower-Higher</p></a>
-    <a  onClick={() => {handleSort('-price')}}><p>Higher-Lower</p></a>
+    <a  onClick={() => {handleSort('+price')}}><p>Low-Hig</p></a>
+    <a  onClick={() => {handleSort('-price')}}><p>Hig-Low</p></a>
     </div>
     </div>
     <div className={s.dropdown} key={'SortS'}>
     <button className={s.dropbtn}>Size</button>
     <div className={s.dropdownContent}>
-    <a  onClick={() => {handleSort('+size')}}><p>Lower-Higher</p></a>
-    <a  onClick={() => {handleSort('-size')}}><p>Higher-Lower</p></a>
+    <a  onClick={() => {handleSort('+size')}}><p>Low-Hig</p></a>
+    <a  onClick={() => {handleSort('-size')}}><p>Hig-Low</p></a>
+    </div>
     </div>
     </div>
     <ul className={s.shoesGrid}>{sort.map((shoe) => (<ShoesCard shoe={shoe} />))}
-          </ul>
-          <button>Next</button>
-        </div>
+    </ul>
+    <button>Next</button>
+    </div>
   );
 };
 
