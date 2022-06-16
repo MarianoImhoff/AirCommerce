@@ -7,17 +7,38 @@ import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { checkOut } from '../hooks/Alerts'
 import { useCartValue } from '../context/CartContext';
+import emailjs from "emailjs-com";
 
 const Checkout = () => {
-    const cart=useCartValue()
-    const navigate = new useNavigate();
-    const userStorage = JSON.parse(localStorage.getItem("user"));
-    const cartStorage = JSON.parse(localStorage.getItem("cart"));
+  const cart = useCartValue()
+  const navigate = new useNavigate();
+  const userStorage = JSON.parse(localStorage.getItem("user"));
+  const cartStorage = JSON.parse(localStorage.getItem("cart"));
+
+  
+
 
   const handleCheckout = async (e) => {
     e.preventDefault();
+
+    const checkoutEmail = (() => {
+
+      let templateParams = {
+        to_name: `${userStorage.name}`,
+        from_name: "AirCommerce",
+        message: `¡Felicitaciones ${userStorage.name}! Su compra se ha realizado con exito.`,
+        mail: `${userStorage.email}`
+      };
+  
+      emailjs.send("service_5a88wkc", "template_q1vr3wt", templateParams, "JvDpm9VoxM-RndTxc").then((result) => {
+        console.log("exito", result);
+      }, (error) => {
+        console.log("NO! por qué?!!", error);
+      })
+    });
+
     try {
-      
+
       const checkout = await axios.put('/orders/checkout', {
         products_buy: cartStorage,
         userNumber: userStorage.id,
@@ -30,14 +51,20 @@ const Checkout = () => {
         fullfilled: false,
         rejected: false,
       });
+
+     
       cart.splice(0, cart.length);
       localStorage.removeItem('cart');
       checkOut()
+      checkoutEmail()
       navigate('/history');
+      window.location.reload()
     } catch (err) {
       console.log(err);
     }
   };
+
+  
 
   return (
     <div className="row">
