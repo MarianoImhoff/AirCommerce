@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 
+
 const ProfileEdit = () => {
     const navigate = new useNavigate();
 
@@ -42,10 +43,10 @@ const ProfileEdit = () => {
             >
                 {(formik, isSubmitting) => (
                     <div className="container w-75 mt-4">
-                        <h3>Editar Datos Personales</h3>
+                        <h3>Edit My Profile</h3>
                         <Form>
                             <div className="form-group">
-                                <label htmlFor="name">Nombre</label>
+                                <label htmlFor="name">Name</label>
                                 <Field
                                     name="name"
                                     className={
@@ -60,7 +61,7 @@ const ProfileEdit = () => {
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="surname">Apellido</label>
+                                <label htmlFor="surname">Surname</label>
                                 <Field
                                     name="surname"
                                     className={
@@ -105,7 +106,7 @@ const ProfileEdit = () => {
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="address">Domicilio</label>
+                                <label htmlFor="address">Adress</label>
                                 <Field
                                     name="address"
                                     className={
@@ -122,13 +123,13 @@ const ProfileEdit = () => {
 
                             <div className="mt-4 d-flex flex-row">
                                 <div className="form-group me-4">
-                                    <Button type="submit" variant="dark">
-                                        EDIT
+                                    <Button  type="submit" variant="dark">
+                                        Edit
                                     </Button>
                                 </div>
                                 <div className="form-group">
-                                    <Button type="reset" variant="dark">
-                                        Borrar Formulario
+                                    <Button  type="reset" variant="dark">
+                                        Cancel
                                     </Button>
                                 </div>
                             </div>

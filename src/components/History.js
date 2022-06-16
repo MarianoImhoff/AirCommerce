@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import s from '../styles/Cart.module.css';
-import ProductCard from '../commons/ProductCard';
+import HistoryProduct from '../commons/HistoryProduct';
 
 const History = () => {
 
@@ -23,14 +23,14 @@ const History = () => {
 console.log(purchasedCartStorage);
   return (
     <div>
-      <h1>Mis Compras</h1>
+      <h1>Mis Orders</h1>
 
       <div className={s.productCard} key={purchasedCartStorage.barcode}>
         <div className={s.imageContainer}>
         {purchasedCartStorage.map((shoe) => {
           console.log(shoe.products_buy)
         return (
-          <ProductCard shoe={shoe} key={shoe.id} />
+          <HistoryProduct shoe={shoe} key={shoe.id} />
         )
         }
           )}

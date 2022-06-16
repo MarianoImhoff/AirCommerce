@@ -22,6 +22,7 @@ import UserSingleView from "./components/UserSingleView"
 import ProductAdminView from "./components/ProductAdminView";
 import AdminView from "./components/AdminView";
 import UserOrders from "./components/UserOrders"
+import HistoryProduct from "./commons/HistoryProduct";
 
 
 
