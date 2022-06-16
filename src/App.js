@@ -47,17 +47,12 @@ export default function App() {
                 <Route exact path='/SuperAdmin/users' element={<SuperAdmin />} />
                 <Route exact path="/cart" element={<Cart />} />
                 <Route exact path="/:id" element={<ProductView />} />
-
                 <Route exact path="/SuperAdmin/users/:dni" element={<UserSingleView />} />
                 <Route exact path="/user_orders" element={<UserOrders />} />
                 <Route exact path="/profile" element={<Profile />} />
                 <Route exact path="/profile_edit" element={<ProfileEdit />} />
-                <Route path='/history' element={<History />} /> 
-                {/*  
-                <Route exact path="/users" element={<Users />} /> */}             
-                 <Route exact path="/checkout" element={<Checkout />} /> 
-                {/* <Route exact path="/new_product" element={<NewProduct />} />
-                <Route path='/update_product/:id' element={<NewProduct />} /> */}
+                <Route exact path='/history' element={<History />} />            
+                <Route exact path="/checkout" element={<Checkout />} /> 
                 <Route exact path='/update_product' element={<ProductAdminView />}/>
                 <Route exact path='/update_product/:search' element={<ProductAdminView />}/>
                 <Route exact path='/update_product/single/:id' element={<AdminView />}/>
@@ -65,11 +60,8 @@ export default function App() {
                 
 
 
-               {/*  
-                <Route exact path="/users" element={<Users />} /> */}
-               {/*  <Route exact path="/profile" element={<Profile />} />
-                <Route path='/history' element={<History />} /> */}
-                {/* <Route exact path="/checkout" element={<Checkout />} /> */}
+               
+               
 
 
             </Routes>
