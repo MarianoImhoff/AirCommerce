@@ -50,15 +50,16 @@ const AdminView = () => {
                 })}
                 onSubmit={values => {
                     const body = new FormData();
-                    body.append( "brand", values.brand)
-                    body.append( "model", values.model)
+                    body.append( "brand", values.brand.toLowerCase())
+                    body.append( "model", values.model.toLowerCase())
                     body.append( "size", values.size)
-                    body.append( "color", values.color)
+                    body.append( "color", values.color.toLowerCase())
                     body.append( "stock", values.stock)
                     body.append( "price", values.price)
                     body.append( "barcode", values.barcode)
                     body.append( "photo", values.photo)
-               
+                    
+                    
                     axios({
                         method: 'post',
                         url: 'http://localhost:8080/api/products',

@@ -6,7 +6,7 @@ class Products extends S.Model {}
 Products.init(
   {
     barcode: {
-      type: S.BIGINT,
+      type: S.STRING,
       allowNull: false,
     },
     brand: {
