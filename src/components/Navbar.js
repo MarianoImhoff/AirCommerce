@@ -83,7 +83,7 @@ const NavBar = () => {
 
           <Nav className="me-auto my-2 my-lg-0">
             <Nav.Link href="/Cart">
-              <Button variant="outline-success">
+              <Button  style={{color:'black', borderColor:'black'}} variant="outline-success">
                 <FaShoppingCart />
               </Button>
             </Nav.Link>

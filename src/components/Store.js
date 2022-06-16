@@ -39,7 +39,6 @@ const Store = () => {
 
   return (
     <div>
-    <h1>Store</h1>
     <div className={s.dropdownContainer}>
     <div className={s.dropdown} key={'SortB'}>
     <button className={s.dropbtn}>Brand</button>
